@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:blasting",
+  "ingredient": {
+    "item": "galvoritetech:raw_galvorite"
+  },
+  "result": "galvoritetech:galvorite_ingot",
+  "experience": 2.0,
+  "cookingtime": 100
+}

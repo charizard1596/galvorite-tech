@@ -1,0 +1,15 @@
+{
+  "item.galvoritetech.galvorite_ingot" : "Galvorite Ingot",
+  "itemGroup.galvoriteGroup" : "Galvorite Tech",
+  "item.galvoritetech.raw_galvorite" : "Raw Galvorite",
+  "item.galvoritetech.galvorite_nugget" : "Galvorite Nugget",
+  "block.galvoritetech.galvorite_ore": "Galvorite Ore",
+  "item.galvoritetech.galvorite_component" : "Galvorite Component",
+  "block.galvoritetech.galvorite_block": "Galvorite Block",
+  "item.galvoritetech.galvorite_sword" : "Galvorite Sword",
+  "item.galvoritetech.galvorite_axe" : "Galvorite Axe",
+  "item.galvoritetech.galvorite_shovel" : "Galvorite Shovel",
+  "item.galvoritetech.galvorite_pickaxe" : "Galvorite Pickaxe",
+  "item.galvoritetech.galvorite_hoe" : "Galvorite Hoe",
+  "block.galvoritetech.recycler": "Recycler"
+}
