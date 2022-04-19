@@ -1,9 +1,9 @@
 {
-  "type": "minecraft:smelting",
+  "type": "minecraft:blasting",
   "ingredient": {
     "item": "galvoritetech:galvorite_ore"
   },
   "result": "galvoritetech:raw_galvorite",
   "experience": 2.0,
-  "cookingtime": 200
+  "cookingtime": 100
 }

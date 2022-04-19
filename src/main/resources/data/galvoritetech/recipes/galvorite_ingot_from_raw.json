@@ -1,9 +1,32 @@
 {
-  "type": "minecraft:blasting",
-  "ingredient": {
-    "item": "galvoritetech:raw_galvorite"
-  },
-  "result": "galvoritetech:galvorite_ingot",
-  "experience": 2.0,
-  "cookingtime": 100
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "galvoritetech:raw_galvorite"
+    },
+    {
+      "item": "galvoritetech:raw_galvorite"
+    },
+    {
+      "item": "galvoritetech:raw_galvorite"
+    },
+    {
+      "item": "galvoritetech:raw_galvorite"
+    },
+    {
+      "item": "minecraft:iron_ingot"
+    },
+    {
+      "item": "minecraft:iron_ingot"
+    },
+    {
+      "item": "minecraft:iron_ingot"
+    },
+    {
+      "item": "minecraft:iron_ingot"
+    }
+  ],
+  "result": {
+    "item": "galvoritetech:galvorite_ingot"
+  }
 }

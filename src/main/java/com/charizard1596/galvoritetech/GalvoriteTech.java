@@ -6,10 +6,15 @@ import com.charizard1596.galvoritetech.items.modItems;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.item.ExperienceOrbEntity;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
+import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.event.TickEvent;
+import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.InterModComms;
@@ -90,13 +95,16 @@ public class GalvoriteTech
             LOGGER.info("HELLO from Register Block");
         }
     }
-    public static int tickCounter;
+
     @SubscribeEvent
-    public void ticker (TickEvent.WorldTickEvent event) {
-        if (tickCounter==100) {
-            tickCounter=0;
-            // resets the counter back to 0
+    public void galvoriteSwordKill (LivingDeathEvent event) {
+        Entity killer = event.getSource().getEntity();
+        Entity dead = event.getEntity();
+        World world = event.getEntityLiving().getEntity().level;
+        if (!(dead instanceof PlayerEntity) && killer instanceof PlayerEntity && ((PlayerEntity) killer).getItemInHand(event.getEntityLiving().getUsedItemHand()).getItem() == modItems.GALVORITE_SWORD.get()) {
+            System.out.println("killed with galvorite sword");
+            ExperienceOrbEntity xp = new ExperienceOrbEntity(world,killer.getX(),killer.getY(),killer.getZ(),1);
+            world.addFreshEntity(xp);
         }
-        tickCounter++;
     }
 }
