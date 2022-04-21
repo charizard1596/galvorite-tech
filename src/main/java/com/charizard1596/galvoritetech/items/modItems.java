@@ -1,6 +1,8 @@
 package com.charizard1596.galvoritetech.items;
 
 import com.charizard1596.galvoritetech.GalvoriteTech;
+import com.charizard1596.galvoritetech.items.custom.shimmerHelmItem;
+import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.*;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.RegistryObject;
@@ -27,6 +29,27 @@ public class modItems {
             () -> new ShovelItem(modItemTier.GALVORITE, 1.5f, -3f, new Item.Properties().tab(modItemGroup.galvoriteGroup)));
     public static final RegistryObject<Item> GALVORITE_HOE = ITEMS.register("galvorite_hoe",
             () -> new HoeItem(modItemTier.GALVORITE, -4, 0f, new Item.Properties().tab(modItemGroup.galvoriteGroup)));
+    public static final RegistryObject<Item> GALVORITE_BOOTS = ITEMS.register("galvorite_boots",
+            () -> new ArmorItem(modArmorMaterial.GALVORITE, EquipmentSlotType.FEET, new Item.Properties().tab(modItemGroup.galvoriteGroup)));
+    public static final RegistryObject<Item> GALVORITE_LEGGINGS = ITEMS.register("galvorite_leggings",
+            () -> new ArmorItem(modArmorMaterial.GALVORITE, EquipmentSlotType.LEGS, new Item.Properties().tab(modItemGroup.galvoriteGroup)));
+    public static final RegistryObject<Item> GALVORITE_CHESTPLATE = ITEMS.register("galvorite_chestplate",
+            () -> new ArmorItem(modArmorMaterial.GALVORITE, EquipmentSlotType.CHEST, new Item.Properties().tab(modItemGroup.galvoriteGroup)));
+    public static final RegistryObject<Item> GALVORITE_HELMET = ITEMS.register("galvorite_helmet",
+            () -> new ArmorItem(modArmorMaterial.GALVORITE, EquipmentSlotType.HEAD, new Item.Properties().tab(modItemGroup.galvoriteGroup)));
+    public static final RegistryObject<Item> SHIMMER_HELM_SPEED = ITEMS.register("shimmer_helm_speed",
+            () -> new shimmerHelmItem(modArmorMaterial.SHIMMER, EquipmentSlotType.HEAD, new Item.Properties().tab(modItemGroup.galvoriteGroup).durability(269)));
+    public static final RegistryObject<Item> SHIMMER_HELM_STRENGTH = ITEMS.register("shimmer_helm_strength",
+            () -> new shimmerHelmItem(modArmorMaterial.SHIMMER, EquipmentSlotType.HEAD, new Item.Properties().tab(modItemGroup.galvoriteGroup).durability(269)));
+    public static final RegistryObject<Item> SHIMMER_HELM_HASTE = ITEMS.register("shimmer_helm_haste",
+            () -> new shimmerHelmItem(modArmorMaterial.SHIMMER, EquipmentSlotType.HEAD, new Item.Properties().tab(modItemGroup.galvoriteGroup).durability(269)));
+    public static final RegistryObject<Item> SHIMMER_HELM_JUMP_BOOST = ITEMS.register("shimmer_helm_jump_boost",
+            () -> new shimmerHelmItem(modArmorMaterial.SHIMMER, EquipmentSlotType.HEAD, new Item.Properties().tab(modItemGroup.galvoriteGroup).durability(269)));
+    public static final RegistryObject<Item> SHIMMER_HELM_RESISTANCE = ITEMS.register("shimmer_helm_resistance",
+            () -> new shimmerHelmItem(modArmorMaterial.SHIMMER, EquipmentSlotType.HEAD, new Item.Properties().tab(modItemGroup.galvoriteGroup).durability(269)));
+    public static final RegistryObject<Item> SHIMMER_HELM_REGENERATION = ITEMS.register("shimmer_helm_regeneration",
+            () -> new shimmerHelmItem(modArmorMaterial.SHIMMER, EquipmentSlotType.HEAD, new Item.Properties().tab(modItemGroup.galvoriteGroup).durability(269)));
+
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);
     }
