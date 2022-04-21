@@ -22,27 +22,33 @@ public class shimmerHelmItem extends ArmorItem implements IArmorVanishable {
         super(p_i48534_1_, p_i48534_2_, p_i48534_3_);
     }
 
+    @Nullable
+    @Override
+    public <A extends BipedModel<?>> A getArmorModel(LivingEntity entityLiving, ItemStack itemStack, EquipmentSlotType armorSlot, A _default) {
+        return super.getArmorModel(entityLiving, itemStack, armorSlot, _default);
+    }
+
     @Override
     public void onArmorTick(ItemStack stack, World world, PlayerEntity player) {
         super.onArmorTick(stack, world, player);
         if (!world.isClientSide()){
             if(player.getItemBySlot(EquipmentSlotType.HEAD).getItem()==(modItems.SHIMMER_HELM_SPEED.get())) {
-                player.addEffect(new EffectInstance(Effects.MOVEMENT_SPEED,10,1));
+                player.addEffect(new EffectInstance(Effects.MOVEMENT_SPEED,1,0));
             } else
             if(player.getItemBySlot(EquipmentSlotType.HEAD).getItem()==(modItems.SHIMMER_HELM_STRENGTH.get())) {
-                player.addEffect(new EffectInstance(Effects.MOVEMENT_SPEED,10,1));
+                player.addEffect(new EffectInstance(Effects.DAMAGE_BOOST,1,0));
             } else
             if(player.getItemBySlot(EquipmentSlotType.HEAD).getItem()==(modItems.SHIMMER_HELM_HASTE.get())) {
-                player.addEffect(new EffectInstance(Effects.MOVEMENT_SPEED,10,1));
+                player.addEffect(new EffectInstance(Effects.DIG_SPEED,1,0));
             } else
             if(player.getItemBySlot(EquipmentSlotType.HEAD).getItem()==(modItems.SHIMMER_HELM_JUMP_BOOST.get())) {
-                player.addEffect(new EffectInstance(Effects.MOVEMENT_SPEED,10,1));
+                player.addEffect(new EffectInstance(Effects.MOVEMENT_SPEED,1,0));
             } else
             if(player.getItemBySlot(EquipmentSlotType.HEAD).getItem()==(modItems.SHIMMER_HELM_RESISTANCE.get())) {
-                player.addEffect(new EffectInstance(Effects.MOVEMENT_SPEED,10,1));
+                player.addEffect(new EffectInstance(Effects.DAMAGE_RESISTANCE,1,0));
             } else
             if(player.getItemBySlot(EquipmentSlotType.HEAD).getItem()==(modItems.SHIMMER_HELM_REGENERATION.get())) {
-                player.addEffect(new EffectInstance(Effects.MOVEMENT_SPEED,10,1));
+                player.addEffect(new EffectInstance(Effects.REGENERATION,1,0));
             }
         }
     }
