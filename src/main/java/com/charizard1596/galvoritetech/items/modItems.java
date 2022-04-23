@@ -49,7 +49,8 @@ public class modItems {
             () -> new shimmerHelmItem(modArmorMaterial.SHIMMER, EquipmentSlotType.HEAD, new Item.Properties().tab(modItemGroup.galvoriteGroup).durability(269)));
     public static final RegistryObject<Item> SHIMMER_HELM_REGENERATION = ITEMS.register("shimmer_helm_regeneration",
             () -> new shimmerHelmItem(modArmorMaterial.SHIMMER, EquipmentSlotType.HEAD, new Item.Properties().tab(modItemGroup.galvoriteGroup).durability(269)));
-
+    public static final RegistryObject<Item> SHIMMER_HELM = ITEMS.register("shimmer_helm",
+            () -> new shimmerHelmItem(modArmorMaterial.SHIMMER, EquipmentSlotType.HEAD, new Item.Properties().tab(modItemGroup.galvoriteGroup).durability(269)));
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);
     }

@@ -11,5 +11,12 @@
   "item.galvoritetech.galvorite_shovel" : "Galvorite Shovel",
   "item.galvoritetech.galvorite_pickaxe" : "Galvorite Pickaxe",
   "item.galvoritetech.galvorite_hoe" : "Galvorite Hoe",
-  "block.galvoritetech.recycler": "Recycler"
+  "block.galvoritetech.recycler": "Recycler",
+  "item.galvoritetech.shimmer_helm" : "Shimmer Helm",
+  "item.galvoritetech.shimmer_helm_regeneration" : "Shimmer Helm(Regeneration)",
+  "item.galvoritetech.shimmer_helm_haste" : "Shimmer Helm(Haste)",
+  "item.galvoritetech.shimmer_helm_speed" : "Shimmer Helm(Speed)",
+  "item.galvoritetech.shimmer_helm_strength" : "Shimmer Helm(Strength)",
+  "item.galvoritetech.shimmer_helm_jump_boost" : "Shimmer Helm(Jump Boost)",
+  "item.galvoritetech.shimmer_helm_resistance" : "Shimmer Helm(Resistance)"
 }
