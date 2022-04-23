@@ -6,6 +6,8 @@ import com.charizard1596.galvoritetech.items.modItems;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 
+import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.renderer.RenderTypeLookup;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.ExperienceOrbEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -51,12 +53,15 @@ public class GalvoriteTech
         // Register the processIMC method for modloading
         modEventBus.addListener(this::processIMC);
         // Register the doClientStuff method for modloading
+        modEventBus.addListener(this::doClientStuff);
         modItems.register(modEventBus);
         modBlocks.register(modEventBus);
         // Register ourselves for server and other game events we are interested in
         MinecraftForge.EVENT_BUS.register(this);
     }
-
+    private void doClientStuff(final FMLClientSetupEvent event) {
+        RenderTypeLookup.setRenderLayer(modBlocks.DIAMOND_TROPHY.get(), RenderType.cutout());
+    }
     private void setup(final FMLCommonSetupEvent event)
     {
         // some preinit code
