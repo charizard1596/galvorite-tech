@@ -8,7 +8,7 @@ import net.minecraftforge.common.Tags;
 
 public class modTags {
     public static class Items {
-        public static final Tags.IOptionalNamedTag<Item> SHIMMER_HELM = createTag("shimmer_helm");
+        public static final Tags.IOptionalNamedTag<Item> SHIMMER_HELMS = createTag("shimmer_helms");
 private static Tags.IOptionalNamedTag<Item> createTag(String name) {
     return ItemTags.createOptional(new ResourceLocation(GalvoriteTech.MOD_ID,name));
         }

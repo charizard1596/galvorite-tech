@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:smithing",
+  "base": {
+    "tag": "galvoritetech:shimmer_helms"
+  },
+  "addition": {
+    "item": "minecraft:golden_apple"
+  },
+  "result": {
+    "item": "galvoritetech:shimmer_helm_resistance"
+  }
+}

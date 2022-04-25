@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:smithing",
+  "base": {
+    "tag": "galvoritetech:shimmer_helms"
+  },
+  "addition": {
+    "item": "minecraft:sugar"
+  },
+  "result": {
+    "item": "galvoritetech:shimmer_helm_speed"
+  }
+}
