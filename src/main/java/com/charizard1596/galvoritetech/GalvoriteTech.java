@@ -107,7 +107,6 @@ public class GalvoriteTech
         Entity dead = event.getEntity();
         World world = event.getEntityLiving().getEntity().level;
         if (!(dead instanceof PlayerEntity) && killer instanceof PlayerEntity && ((PlayerEntity) killer).getItemInHand(event.getEntityLiving().getUsedItemHand()).getItem() == modItems.GALVORITE_SWORD.get()) {
-            System.out.println("killed with galvorite sword");
             ExperienceOrbEntity xp = new ExperienceOrbEntity(world,killer.getX(),killer.getY(),killer.getZ(),1);
             world.addFreshEntity(xp);
         }
