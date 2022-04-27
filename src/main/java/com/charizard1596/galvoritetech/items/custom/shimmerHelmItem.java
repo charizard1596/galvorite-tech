@@ -82,22 +82,22 @@ public class shimmerHelmItem extends ArmorItem implements IArmorVanishable {
             player.removeEffect(Effects.UNLUCK);
 
             if(player.getItemBySlot(EquipmentSlotType.HEAD).getItem()==(modItems.SHIMMER_HELM_SPEED.get())) {
-                player.addEffect(new EffectInstance(Effects.MOVEMENT_SPEED,1,0));
+                player.addEffect(new EffectInstance(Effects.MOVEMENT_SPEED,4,0));
             } else
             if(player.getItemBySlot(EquipmentSlotType.HEAD).getItem()==(modItems.SHIMMER_HELM_STRENGTH.get())) {
-                player.addEffect(new EffectInstance(Effects.DAMAGE_BOOST,1,0));
+                player.addEffect(new EffectInstance(Effects.DAMAGE_BOOST,4,0));
             } else
             if(player.getItemBySlot(EquipmentSlotType.HEAD).getItem()==(modItems.SHIMMER_HELM_HASTE.get())) {
-                player.addEffect(new EffectInstance(Effects.DIG_SPEED,1,0));
+                player.addEffect(new EffectInstance(Effects.DIG_SPEED,4,0));
             } else
             if(player.getItemBySlot(EquipmentSlotType.HEAD).getItem()==(modItems.SHIMMER_HELM_JUMP_BOOST.get())) {
-                player.addEffect(new EffectInstance(Effects.JUMP,1,0));
+                player.addEffect(new EffectInstance(Effects.JUMP,4,0));
             } else
             if(player.getItemBySlot(EquipmentSlotType.HEAD).getItem()==(modItems.SHIMMER_HELM_RESISTANCE.get())) {
-                player.addEffect(new EffectInstance(Effects.DAMAGE_RESISTANCE,1,0));
+                player.addEffect(new EffectInstance(Effects.DAMAGE_RESISTANCE,4,0));
             } else
             if(player.getItemBySlot(EquipmentSlotType.HEAD).getItem()==(modItems.SHIMMER_HELM_REGENERATION.get())) {
-                player.addEffect(new EffectInstance(Effects.REGENERATION,1,0));
+                player.addEffect(new EffectInstance(Effects.REGENERATION,4,0));
             }
         }
     }

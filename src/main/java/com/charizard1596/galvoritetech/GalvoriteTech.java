@@ -9,14 +9,18 @@ import net.minecraft.block.Blocks;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.RenderTypeLookup;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.item.ExperienceOrbEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.Item;
+import net.minecraft.inventory.EquipmentSlotType;
+import net.minecraft.potion.EffectInstance;
+import net.minecraft.potion.Effects;
 import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegistryEvent;
-import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
+import net.minecraftforge.event.entity.player.CriticalHitEvent;
+import net.minecraftforge.eventbus.api.Event;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.InterModComms;
@@ -30,10 +34,6 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.util.Collection;
-import java.util.Iterator;
-import java.util.List;
-import java.util.ListIterator;
 import java.util.stream.Collectors;
 
 // The value here should match an entry in the META-INF/mods.toml file
@@ -110,5 +110,20 @@ public class GalvoriteTech
             ExperienceOrbEntity xp = new ExperienceOrbEntity(world,killer.getX(),killer.getY(),killer.getZ(),1);
             world.addFreshEntity(xp);
         }
+    }
+    @SubscribeEvent
+    public void onCrit(CriticalHitEvent event) {
+        if (event.getPlayer().getItemBySlot(EquipmentSlotType.MAINHAND).getItem() == modItems.GALVORITE_AXE.get())
+        {
+            if (event.isVanillaCritical()) {
+                if (Math.random()<0.25) {
+                    LivingEntity livingEntity = (LivingEntity) event.getTarget();
+                    if (livingEntity != null) {
+                        livingEntity.addEffect(new EffectInstance(Effects.MOVEMENT_SLOWDOWN,200,0));
+                    }
+                }
+                event.setResult(Event.Result.ALLOW);
+            } else event.setResult(Event.Result.DENY);
+        } else event.setResult(Event.Result.DEFAULT);
     }
 }

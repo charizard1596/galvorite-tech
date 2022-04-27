@@ -1,7 +1,7 @@
 package com.charizard1596.galvoritetech.items;
 
 import com.charizard1596.galvoritetech.GalvoriteTech;
-import com.charizard1596.galvoritetech.items.custom.shimmerHelmItem;
+import com.charizard1596.galvoritetech.items.custom.*;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.*;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -22,13 +22,13 @@ public class modItems {
     public static final RegistryObject<Item> GALVORITE_SWORD = ITEMS.register("galvorite_sword",
             () -> new SwordItem(modItemTier.GALVORITE, 3, -2.4f, new Item.Properties().tab(modItemGroup.galvoriteGroup)));
     public static final RegistryObject<Item> GALVORITE_AXE = ITEMS.register("galvorite_axe",
-            () -> new ShovelItem(modItemTier.GALVORITE, 5f, -3f, new Item.Properties().tab(modItemGroup.galvoriteGroup)));
+            () -> new AxeItem(modItemTier.GALVORITE, 5f, -3f, new Item.Properties().tab(modItemGroup.galvoriteGroup)));
     public static final RegistryObject<Item> GALVORITE_PICKAXE = ITEMS.register("galvorite_pickaxe",
-            () -> new PickaxeItem(modItemTier.GALVORITE, 1, -2.8f, new Item.Properties().tab(modItemGroup.galvoriteGroup)));
+            () -> new galvoritePickaxeItem(modItemTier.GALVORITE, 1, -2.8f, new Item.Properties().tab(modItemGroup.galvoriteGroup)));
     public static final RegistryObject<Item> GALVORITE_SHOVEL = ITEMS.register("galvorite_shovel",
-            () -> new ShovelItem(modItemTier.GALVORITE, 1.5f, -3f, new Item.Properties().tab(modItemGroup.galvoriteGroup)));
+            () -> new galvoriteShovelItem(modItemTier.GALVORITE, 1.5f, -3f, new Item.Properties().tab(modItemGroup.galvoriteGroup)));
     public static final RegistryObject<Item> GALVORITE_HOE = ITEMS.register("galvorite_hoe",
-            () -> new HoeItem(modItemTier.GALVORITE, -4, 0f, new Item.Properties().tab(modItemGroup.galvoriteGroup)));
+            () -> new galvoriteHoeItem(modItemTier.GALVORITE, -4, 0f, new Item.Properties().tab(modItemGroup.galvoriteGroup)));
     public static final RegistryObject<Item> GALVORITE_BOOTS = ITEMS.register("galvorite_boots",
             () -> new ArmorItem(modArmorMaterial.GALVORITE, EquipmentSlotType.FEET, new Item.Properties().tab(modItemGroup.galvoriteGroup)));
     public static final RegistryObject<Item> GALVORITE_LEGGINGS = ITEMS.register("galvorite_leggings",
