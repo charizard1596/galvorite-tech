@@ -2,7 +2,9 @@ package com.charizard1596.galvoritetech.items.custom;
 
 import com.charizard1596.galvoritetech.GalvoriteTech;
 import com.charizard1596.galvoritetech.items.modItems;
+import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.renderer.entity.model.BipedModel;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.enchantment.Enchantments;
@@ -15,9 +17,12 @@ import net.minecraft.item.*;
 import net.minecraft.potion.Effect;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Effects;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
 
 import javax.annotation.Nullable;
+import java.util.List;
 import java.util.Map;
 
 public class shimmerHelmItem extends ArmorItem implements IArmorVanishable {
@@ -64,6 +69,45 @@ public class shimmerHelmItem extends ArmorItem implements IArmorVanishable {
             return "galvoritetech:textures/models/armor/shimmer_helm.png";
         }
         return null;
+    }
+
+    @Override
+    public void appendHoverText(ItemStack p_77624_1_, @Nullable World p_77624_2_, List<ITextComponent> p_77624_3_, ITooltipFlag p_77624_4_) {
+        if(p_77624_1_.getItem()==(modItems.SHIMMER_HELM_SPEED.get())) {
+            if (Screen.hasShiftDown()){
+                p_77624_3_.add(new TranslationTextComponent("tooltip.galvoritetech.shimmer_helm_speed"));
+            } else p_77624_3_.add(new TranslationTextComponent("tooltip.galvoritetech.hold_shift"));
+        } else
+        if(p_77624_1_.getItem()==(modItems.SHIMMER_HELM_STRENGTH.get())) {
+            if (Screen.hasShiftDown()){
+                p_77624_3_.add(new TranslationTextComponent("tooltip.galvoritetech.shimmer_helm_strength"));
+            } else p_77624_3_.add(new TranslationTextComponent("tooltip.galvoritetech.hold_shift"));
+        } else
+        if(p_77624_1_.getItem()==(modItems.SHIMMER_HELM_HASTE.get())) {
+            if (Screen.hasShiftDown()){
+                p_77624_3_.add(new TranslationTextComponent("tooltip.galvoritetech.shimmer_helm_haste"));
+            } else p_77624_3_.add(new TranslationTextComponent("tooltip.galvoritetech.hold_shift"));
+        } else
+        if(p_77624_1_.getItem()==(modItems.SHIMMER_HELM_JUMP_BOOST.get())) {
+            if (Screen.hasShiftDown()){
+                p_77624_3_.add(new TranslationTextComponent("tooltip.galvoritetech.shimmer_helm_jump_boost"));
+            } else p_77624_3_.add(new TranslationTextComponent("tooltip.galvoritetech.hold_shift"));
+        } else
+        if (p_77624_1_.getItem()==(modItems.SHIMMER_HELM_RESISTANCE.get())) {
+            if (Screen.hasShiftDown()){
+                p_77624_3_.add(new TranslationTextComponent("tooltip.galvoritetech.shimmer_helm_resistance"));
+            } else p_77624_3_.add(new TranslationTextComponent("tooltip.galvoritetech.hold_shift"));
+        } else
+        if(p_77624_1_.getItem()==(modItems.SHIMMER_HELM_REGENERATION.get())) {
+            if (Screen.hasShiftDown()){
+                p_77624_3_.add(new TranslationTextComponent("tooltip.galvoritetech.shimmer_helm_regeneration"));
+            } else p_77624_3_.add(new TranslationTextComponent("tooltip.galvoritetech.hold_shift"));
+        } else {
+            if (Screen.hasShiftDown()){
+                p_77624_3_.add(new TranslationTextComponent("tooltip.galvoritetech.shimmer_helm"));
+            } else p_77624_3_.add(new TranslationTextComponent("tooltip.galvoritetech.hold_shift"));
+        }
+        super.appendHoverText(p_77624_1_, p_77624_2_, p_77624_3_, p_77624_4_);
     }
 
     @Override

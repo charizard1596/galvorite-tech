@@ -23,5 +23,13 @@
   "item.galvoritetech.shimmer_helm_speed" : "Shimmer Helm(Speed)",
   "item.galvoritetech.shimmer_helm_strength" : "Shimmer Helm(Strength)",
   "item.galvoritetech.shimmer_helm_jump_boost" : "Shimmer Helm(Jump Boost)",
-  "item.galvoritetech.shimmer_helm_resistance" : "Shimmer Helm(Resistance)"
+  "item.galvoritetech.shimmer_helm_resistance" : "Shimmer Helm(Resistance)",
+  "tooltip.galvoritetech.shimmer_helm" : "Prevents negative status effects when worn. Combine this in a smithing table with any ore, a golden apple, rabbit foot, sugar, blaze powder, or ghast tear in order to produce a positive potion effect when worn.",
+  "tooltip.galvoritetech.hold_shift" : "Hold \u00a7eSHIFT\u00a7r for more information",
+  "tooltip.galvoritetech.shimmer_helm_regeneration" : "Prevents negative status effects and provides Regeneration I when worn.",
+  "tooltip.galvoritetech.shimmer_helm_jump_boost" : "Prevents negative status effects and provides Resistance I when worn.",
+  "tooltip.galvoritetech.shimmer_helm_speed" : "Prevents negative status effects and provides Speed I when worn.",
+  "tooltip.galvoritetech.shimmer_helm_haste" : "Prevents negative status effects and provides Haste I when worn.",
+  "tooltip.galvoritetech.shimmer_helm_strength" : "Prevents negative status effects and provides Strength I when worn.",
+  "tooltip.galvoritetech.shimmer_helm_resistance" : "Prevents negative status effects and provides Resistance I when worn."
 }
