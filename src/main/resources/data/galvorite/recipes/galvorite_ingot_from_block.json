@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "galvorite:galvorite_block"
+    }
+  ],
+  "result": {
+    "item": "galvorite:galvorite_ingot",
+    "count": 9
+  }
+}

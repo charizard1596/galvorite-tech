@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "W#W",
+    "WFW"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:beacon"
+    },
+    "W": {
+      "item": "galvorite:galvorite_ingot"
+    },
+    "F": {
+      "item": "galvorite:galvorite_helmet"
+    }
+  },
+  "result": {
+    "item": "galvorite:shimmer_helm"
+  }
+}

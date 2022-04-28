@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:smithing",
+  "base": {
+    "tag": "galvorite:shimmer_helms"
+  },
+  "addition": {
+    "item": "minecraft:ghast_tear"
+  },
+  "result": {
+    "item": "galvorite:shimmer_helm_regeneration"
+  }
+}

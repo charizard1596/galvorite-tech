@@ -1,0 +1,32 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "galvorite:raw_galvorite"
+    },
+    {
+      "item": "galvorite:raw_galvorite"
+    },
+    {
+      "item": "galvorite:raw_galvorite"
+    },
+    {
+      "item": "galvorite:raw_galvorite"
+    },
+    {
+      "item": "minecraft:obsidian"
+    },
+    {
+      "item": "minecraft:obsidian"
+    },
+    {
+      "item": "minecraft:obsidian"
+    },
+    {
+      "item": "minecraft:obsidian"
+    }
+  ],
+  "result": {
+    "item": "galvorite:galvorite_ingot"
+  }
+}

@@ -1,6 +1,0 @@
-{
-  "parent" : "item/generated",
-  "textures" : {
-    "layer0" : "galvoritetech:item/item_shimmer_helm"
-  }
-}

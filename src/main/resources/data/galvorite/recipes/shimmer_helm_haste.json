@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:smithing",
+  "base": {
+    "tag": "galvorite:shimmer_helms"
+  },
+  "addition": {
+    "tag": "forge:ores"
+  },
+  "result": {
+    "item": "galvorite:shimmer_helm_haste"
+  }
+}

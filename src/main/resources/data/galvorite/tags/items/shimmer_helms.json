@@ -1,0 +1,12 @@
+{
+  "replace" : "false",
+  "values" : [
+    "galvorite:shimmer_helm",
+    "galvorite:shimmer_helm_haste",
+    "galvorite:shimmer_helm_regeneration",
+    "galvorite:shimmer_helm_jump_boost",
+    "galvorite:shimmer_helm_speed",
+    "galvorite:shimmer_helm_resistance",
+    "galvorite:shimmer_helm_strength"
+  ]
+}

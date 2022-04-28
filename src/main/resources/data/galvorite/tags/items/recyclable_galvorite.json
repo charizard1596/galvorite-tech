@@ -1,0 +1,14 @@
+{
+  "replace" : "false",
+  "values" : [
+    "galvorite:galvorite_sword",
+    "galvorite:galvorite_pickaxe",
+    "galvorite:galvorite_shovel",
+    "galvorite:galvorite_axe",
+    "galvorite:galvorite_hoe",
+    "galvorite:galvorite_helmet",
+    "galvorite:galvorite_chestplate",
+    "galvorite:galvorite_leggings",
+    "galvorite:galvorite_boots"
+  ]
+}
