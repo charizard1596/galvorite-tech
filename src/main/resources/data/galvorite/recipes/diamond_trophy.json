@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###",
+    "#F#",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "galvorite:galvorite_ingot"
+    },
+    "F": {
+      "item": "minecraft:dragon_egg"
+    }
+  },
+  "result": {
+    "item": "galvorite:diamond_trophy"
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "parent": "block/dragon_egg",
+  "textures": {
+    "all": "galvorite:block/galvorite_block"
+  }
+}
