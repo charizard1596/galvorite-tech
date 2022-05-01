@@ -20,23 +20,23 @@ public class modItems {
     public static final RegistryObject<Item> GALVORITE_COMPONENT = ITEMS.register("galvorite_component",
             () -> new Item(new Item.Properties().tab(modItemGroup.galvoriteGroup)));
     public static final RegistryObject<Item> GALVORITE_SWORD = ITEMS.register("galvorite_sword",
-            () -> new SwordItem(modItemTier.GALVORITE, 3, -2.4f, new Item.Properties().tab(modItemGroup.galvoriteGroup)));
+            () -> new galvoriteSwordItem(modItemTier.GALVORITE, 3, -2.4f, new Item.Properties().tab(modItemGroup.galvoriteGroup)));
     public static final RegistryObject<Item> GALVORITE_AXE = ITEMS.register("galvorite_axe",
-            () -> new AxeItem(modItemTier.GALVORITE, 5f, -3f, new Item.Properties().tab(modItemGroup.galvoriteGroup)));
+            () -> new galvoriteAxeItem(modItemTier.GALVORITE, 5f, -3f, new Item.Properties().tab(modItemGroup.galvoriteGroup)));
     public static final RegistryObject<Item> GALVORITE_PICKAXE = ITEMS.register("galvorite_pickaxe",
             () -> new galvoritePickaxeItem(modItemTier.GALVORITE, 1, -2.8f, new Item.Properties().tab(modItemGroup.galvoriteGroup)));
     public static final RegistryObject<Item> GALVORITE_SHOVEL = ITEMS.register("galvorite_shovel",
             () -> new galvoriteShovelItem(modItemTier.GALVORITE, 1.5f, -3f, new Item.Properties().tab(modItemGroup.galvoriteGroup)));
     public static final RegistryObject<Item> GALVORITE_HOE = ITEMS.register("galvorite_hoe",
             () -> new galvoriteHoeItem(modItemTier.GALVORITE, -4, 0f, new Item.Properties().tab(modItemGroup.galvoriteGroup)));
-    public static final RegistryObject<Item> GALVORITE_BOOTS = ITEMS.register("galvorite_boots",
-            () -> new ArmorItem(modArmorMaterial.GALVORITE, EquipmentSlotType.FEET, new Item.Properties().tab(modItemGroup.galvoriteGroup)));
-    public static final RegistryObject<Item> GALVORITE_LEGGINGS = ITEMS.register("galvorite_leggings",
-            () -> new ArmorItem(modArmorMaterial.GALVORITE, EquipmentSlotType.LEGS, new Item.Properties().tab(modItemGroup.galvoriteGroup)));
-    public static final RegistryObject<Item> GALVORITE_CHESTPLATE = ITEMS.register("galvorite_chestplate",
-            () -> new ArmorItem(modArmorMaterial.GALVORITE, EquipmentSlotType.CHEST, new Item.Properties().tab(modItemGroup.galvoriteGroup)));
     public static final RegistryObject<Item> GALVORITE_HELMET = ITEMS.register("galvorite_helmet",
             () -> new ArmorItem(modArmorMaterial.GALVORITE, EquipmentSlotType.HEAD, new Item.Properties().tab(modItemGroup.galvoriteGroup)));
+    public static final RegistryObject<Item> GALVORITE_CHESTPLATE = ITEMS.register("galvorite_chestplate",
+            () -> new ArmorItem(modArmorMaterial.GALVORITE, EquipmentSlotType.CHEST, new Item.Properties().tab(modItemGroup.galvoriteGroup)));
+    public static final RegistryObject<Item> GALVORITE_LEGGINGS = ITEMS.register("galvorite_leggings",
+            () -> new ArmorItem(modArmorMaterial.GALVORITE, EquipmentSlotType.LEGS, new Item.Properties().tab(modItemGroup.galvoriteGroup)));
+    public static final RegistryObject<Item> GALVORITE_BOOTS = ITEMS.register("galvorite_boots",
+            () -> new ArmorItem(modArmorMaterial.GALVORITE, EquipmentSlotType.FEET, new Item.Properties().tab(modItemGroup.galvoriteGroup)));
     public static final RegistryObject<Item> SHIMMER_HELM_SPEED = ITEMS.register("shimmer_helm_speed",
             () -> new shimmerHelmItem(modArmorMaterial.SHIMMER, EquipmentSlotType.HEAD, new Item.Properties().tab(modItemGroup.galvoriteGroup).durability(269)));
     public static final RegistryObject<Item> SHIMMER_HELM_STRENGTH = ITEMS.register("shimmer_helm_strength",

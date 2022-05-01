@@ -7,13 +7,13 @@
   ],
   "key": {
     "#": {
-      "item": "minecraft:diamond_block"
+      "item": "minecraft:netherite_block"
     },
     "F": {
-      "item": "minecraft:dragon_egg"
+      "item": "galvorite:diamond_trophy"
     }
   },
   "result": {
-    "item": "galvorite:diamond_trophy"
+    "item": "galvorite:netherite_trophy"
   }
 }

@@ -17,6 +17,8 @@
   "item.galvorite.galvorite_boots" : "Galvorite Boots",
   "block.galvorite.recycler": "Recycler",
   "block.galvorite.diamond_trophy": "Diamond Trophy",
+  "block.galvorite.netherite_trophy": "Netherite Trophy",
+  "block.galvorite.galvorite_trophy": "Galvorite Trophy",
   "item.galvorite.shimmer_helm" : "Shimmer Helm",
   "item.galvorite.shimmer_helm_regeneration" : "Shimmer Helm(Regeneration)",
   "item.galvorite.shimmer_helm_haste" : "Shimmer Helm(Haste)",
@@ -33,10 +35,5 @@
   "tooltip.galvorite.shimmer_helm_strength" : "Prevents negative status effects and provides Strength I when worn.",
   "tooltip.galvorite.shimmer_helm_resistance" : "Prevents negative status effects and provides Resistance I when worn.",
   "tooltip.galvorite.galvorite_sword" : "Gives extra experience when killing things.",
-  "tooltip.galvorite.galvorite_axe" : "Has a 25% chance to give the slowness effect on a critical hit.",
-  "tooltip.galvorite.galvorite_pickaxe" : "Has extra range compared to a normal pickaxe.",
-  "tooltip.galvorite.galvorite_shovel" : "Has extra range compared to a normal shovel.",
-  "tooltip.galvorite.galvorite_hoe" : "Has extra range compared to a normal hoe."
-
-
+  "tooltip.galvorite.galvorite_axe" : "Has a 25% chance to apply the slowness effect on a critical hit."
 }

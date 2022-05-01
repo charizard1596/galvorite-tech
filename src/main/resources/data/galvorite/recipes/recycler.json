@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#C#",
+    "#S#",
+    "#B#"
+  ],
+  "key": {
+    "#": {
+      "item": "galvorite:galvorite_nugget"
+    },
+    "C": {
+      "item": "galvorite:galvorite_component"
+    },
+    "S": {
+      "item": "minecraft:stonecutter"
+    },
+    "B": {
+      "item": "minecraft:blast_furnace"
+    }
+  },
+  "result": {
+    "item": "galvorite:galvorite_block"
+  }
+}

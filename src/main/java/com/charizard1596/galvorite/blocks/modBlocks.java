@@ -26,9 +26,9 @@ public class modBlocks {
     public static final RegistryObject<Block> GALVORITE_ORE = registerBlock("galvorite_ore", () -> new Block(AbstractBlock.Properties.of(Material.STONE).harvestLevel(4).harvestTool(ToolType.PICKAXE).requiresCorrectToolForDrops().strength(20f)));
     public static final RegistryObject<Block> GALVORITE_BLOCK = registerBlock("galvorite_block", () -> new Block(AbstractBlock.Properties.of(Material.HEAVY_METAL).harvestLevel(3).harvestTool(ToolType.PICKAXE).requiresCorrectToolForDrops().strength(15f)));
     public static final RegistryObject<Block> RECYCLER = registerBlock("recycler", () -> new recyclerBlock(AbstractBlock.Properties.of(Material.STONE).requiresCorrectToolForDrops().strength(3.5F)));
-    public static final RegistryObject<Block> DIAMOND_TROPHY = registerBlock("diamond_trophy", () -> new recyclerBlock(AbstractBlock.Properties.of(Material.METAL, MaterialColor.DIAMOND).requiresCorrectToolForDrops().strength(5.0F, 6.0F).sound(SoundType.METAL).noOcclusion()));
-    public static final RegistryObject<Block> NETHERITE_TROPHY = registerBlock("netherite_trophy", () -> new Block(AbstractBlock.Properties.of(Material.METAL, MaterialColor.COLOR_BLACK).requiresCorrectToolForDrops().strength(50.0F, 1200.0F).sound(SoundType.NETHERITE_BLOCK)));
-    public static final RegistryObject<Block> GALVORITE_TROPHY = registerBlock("galvorite_trophy", () -> new Block(AbstractBlock.Properties.of(Material.HEAVY_METAL).harvestLevel(3).harvestTool(ToolType.PICKAXE).requiresCorrectToolForDrops().strength(15f)));
+    public static final RegistryObject<Block> DIAMOND_TROPHY = registerBlock("diamond_trophy", () -> new Block(AbstractBlock.Properties.of(Material.METAL, MaterialColor.DIAMOND).requiresCorrectToolForDrops().strength(5.0F, 6.0F).sound(SoundType.METAL).noOcclusion()));
+    public static final RegistryObject<Block> NETHERITE_TROPHY = registerBlock("netherite_trophy", () -> new Block(AbstractBlock.Properties.of(Material.METAL, MaterialColor.COLOR_BLACK).requiresCorrectToolForDrops().strength(50.0F, 1200.0F).sound(SoundType.NETHERITE_BLOCK).noOcclusion()));
+    public static final RegistryObject<Block> GALVORITE_TROPHY = registerBlock("galvorite_trophy", () -> new Block(AbstractBlock.Properties.of(Material.HEAVY_METAL).harvestLevel(3).harvestTool(ToolType.PICKAXE).requiresCorrectToolForDrops().strength(15f).noOcclusion()));
 
 
 

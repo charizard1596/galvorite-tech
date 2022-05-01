@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:smithing",
+  "base": {
+    "item": "minecraft:netherite_boots"
+  },
+  "addition": {
+    "item": "galvorite:galvorite_ingot"
+  },
+  "result": {
+    "item": "galvorite:galvorite_boots"
+  }
+}

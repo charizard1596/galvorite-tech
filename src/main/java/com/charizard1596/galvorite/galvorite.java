@@ -61,6 +61,8 @@ public class galvorite
     }
     private void doClientStuff(final FMLClientSetupEvent event) {
         RenderTypeLookup.setRenderLayer(modBlocks.DIAMOND_TROPHY.get(), RenderType.cutout());
+        RenderTypeLookup.setRenderLayer(modBlocks.NETHERITE_TROPHY.get(), RenderType.cutout());
+        RenderTypeLookup.setRenderLayer(modBlocks.GALVORITE_TROPHY.get(), RenderType.cutout());
     }
     private void setup(final FMLCommonSetupEvent event)
     {
