@@ -1,20 +1,16 @@
-package com.charizard1596.galvorite.items.custom;
+package mod.charizard1596.galvorite.items.custom;
 
-import com.charizard1596.galvorite.galvorite;
-import com.charizard1596.galvorite.items.modItems;
+import mod.charizard1596.galvorite.items.modItems;
 import net.minecraft.client.gui.screen.Screen;
-import net.minecraft.client.renderer.entity.model.BipedModel;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.enchantment.Enchantments;
 import net.minecraft.enchantment.IArmorVanishable;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.*;
-import net.minecraft.potion.Effect;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Effects;
 import net.minecraft.util.text.ITextComponent;
@@ -23,7 +19,6 @@ import net.minecraft.world.World;
 
 import javax.annotation.Nullable;
 import java.util.List;
-import java.util.Map;
 
 public class shimmerHelmItem extends ArmorItem implements IArmorVanishable {
 

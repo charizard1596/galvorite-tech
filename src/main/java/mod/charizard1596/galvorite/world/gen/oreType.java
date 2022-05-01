@@ -1,6 +1,6 @@
-package com.charizard1596.galvorite.world.gen;
+package mod.charizard1596.galvorite.world.gen;
 
-import com.charizard1596.galvorite.blocks.modBlocks;
+import mod.charizard1596.galvorite.blocks.modBlocks;
 import net.minecraft.block.Block;
 import net.minecraftforge.common.util.Lazy;
 

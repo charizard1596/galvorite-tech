@@ -1,12 +1,11 @@
-package com.charizard1596.galvorite.blocks;
+package mod.charizard1596.galvorite.blocks;
 
-import com.charizard1596.galvorite.galvorite;
-import com.charizard1596.galvorite.blocks.custom.recyclerBlock;
-import com.charizard1596.galvorite.items.modItemGroup;
-import com.charizard1596.galvorite.items.modItems;
+import mod.charizard1596.galvorite.galvorite;
+import mod.charizard1596.galvorite.blocks.custom.recyclerBlock;
+import mod.charizard1596.galvorite.items.modItemGroup;
+import mod.charizard1596.galvorite.items.modItems;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
-import net.minecraft.block.Blocks;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialColor;
@@ -18,7 +17,6 @@ import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 
-import java.util.List;
 import java.util.function.Supplier;
 
 public class modBlocks {

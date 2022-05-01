@@ -1,10 +1,8 @@
-package com.charizard1596.galvorite.items;
+package mod.charizard1596.galvorite.items;
 
 import net.minecraft.item.IItemTier;
-import net.minecraft.item.Items;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.LazyValue;
-import com.charizard1596.galvorite.items.modItems;
 
 import java.util.function.Supplier;
 

@@ -1,13 +1,10 @@
-package com.charizard1596.galvorite.blocks.custom;
-import com.charizard1596.galvorite.galvorite;
-import com.charizard1596.galvorite.blocks.modBlocks;
-import com.charizard1596.galvorite.items.modItems;
-import com.charizard1596.galvorite.util.modTags;
+package mod.charizard1596.galvorite.blocks.custom;
+import mod.charizard1596.galvorite.items.modItems;
+import mod.charizard1596.galvorite.util.modTags;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.HorizontalBlock;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.BlockItemUseContext;
@@ -18,9 +15,6 @@ import net.minecraft.state.BooleanProperty;
 import net.minecraft.state.DirectionProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.state.properties.BlockStateProperties;
-import net.minecraft.tags.ItemTags;
-import net.minecraft.tags.Tag;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Direction;
 import net.minecraft.util.Hand;
@@ -28,14 +22,9 @@ import net.minecraft.util.Rotation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.world.Explosion;
-import net.minecraft.world.IWorld;
-import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
-import net.minecraftforge.common.util.Constants;
 
 import javax.annotation.Nullable;
-import java.util.*;
-import java.util.concurrent.TimeUnit;
 
 
 public class recyclerBlock extends Block {

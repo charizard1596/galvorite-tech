@@ -1,8 +1,8 @@
-package com.charizard1596.galvorite.world;
+package mod.charizard1596.galvorite.world;
 
-import com.charizard1596.galvorite.galvorite;
+import mod.charizard1596.galvorite.galvorite;
 //import com.charizard1596.galvorite.world.gen.modOreGeneration;
-import com.charizard1596.galvorite.world.gen.modOreGeneration;
+import mod.charizard1596.galvorite.world.gen.modOreGeneration;
 import net.minecraftforge.event.world.BiomeLoadingEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;

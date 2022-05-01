@@ -1,6 +1,5 @@
-package com.charizard1596.galvorite.world.gen;
+package mod.charizard1596.galvorite.world.gen;
 
-import com.charizard1596.galvorite.world.gen.oreType;
 import net.minecraft.block.Blocks;
 import net.minecraft.util.RegistryKey;
 import net.minecraft.util.registry.Registry;
@@ -17,7 +16,6 @@ import net.minecraft.world.gen.placement.ConfiguredPlacement;
 import net.minecraft.world.gen.placement.Placement;
 import net.minecraft.world.gen.placement.TopSolidRangeConfig;
 import net.minecraftforge.event.world.BiomeLoadingEvent;
-import net.minecraftforge.registries.ForgeRegistries;
 
 
 import java.util.Arrays;

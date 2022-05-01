@@ -1,4 +1,4 @@
-package com.charizard1596.galvorite.items;
+package mod.charizard1596.galvorite.items;
 
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
