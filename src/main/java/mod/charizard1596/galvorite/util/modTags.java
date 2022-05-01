@@ -1,6 +1,6 @@
-package com.charizard1596.galvorite.util;
+package mod.charizard1596.galvorite.util;
 
-import com.charizard1596.galvorite.galvorite;
+import mod.charizard1596.galvorite.galvorite;
 import net.minecraft.item.Item;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.util.ResourceLocation;

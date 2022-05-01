@@ -1,7 +1,7 @@
-package com.charizard1596.galvorite;
+package mod.charizard1596.galvorite;
 
-import com.charizard1596.galvorite.blocks.modBlocks;
-import com.charizard1596.galvorite.items.modItems;
+import mod.charizard1596.galvorite.blocks.modBlocks;
+import mod.charizard1596.galvorite.items.modItems;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;

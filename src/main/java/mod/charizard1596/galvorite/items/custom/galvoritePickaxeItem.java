@@ -1,22 +1,23 @@
-package com.charizard1596.galvorite.items.custom;
+package mod.charizard1596.galvorite.items.custom;
 
 import com.google.common.collect.ImmutableMultimap;
 import com.google.common.collect.Multimap;
 import net.minecraft.entity.ai.attributes.Attribute;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
+import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.IItemTier;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.PickaxeItem;
-import net.minecraft.item.ShovelItem;
 import net.minecraftforge.common.ForgeMod;
+import net.minecraftforge.fml.RegistryObject;
 
 import java.util.UUID;
 
-public class galvoriteShovelItem extends ShovelItem {
+public class galvoritePickaxeItem extends PickaxeItem {
     private final Multimap<Attribute, AttributeModifier> defaultModifiers;
-    protected static final UUID ATTACK_REACH_MODIFIER = UUID.fromString("bb48d213-2c27-44b9-b406-635ca404ba07");
-    public galvoriteShovelItem(IItemTier p_i48478_1_, float p_i48478_2_, float p_i48478_3_, Properties p_i48478_4_) {
+    protected static final UUID ATTACK_REACH_MODIFIER = UUID.fromString("410cc095-30eb-4f69-bab2-e5c8658e00c5");
+    public galvoritePickaxeItem(IItemTier p_i48478_1_, int p_i48478_2_, float p_i48478_3_, Properties p_i48478_4_) {
         super(p_i48478_1_, p_i48478_2_, p_i48478_3_, p_i48478_4_);
         this.defaultModifiers=super.getDefaultAttributeModifiers(EquipmentSlotType.MAINHAND);
     }
