@@ -1,7 +1,7 @@
 package mod.charizard1596.galvorite.items;
 
 import mod.charizard1596.galvorite.galvorite;
-import com.charizard1596.galvorite.items.custom.*;
+import mod.charizard1596.galvorite.items.custom.*;
 import mod.charizard1596.galvorite.items.custom.*;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.*;
