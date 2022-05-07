@@ -1,6 +1,6 @@
 {
   "item.galvorite.galvorite_ingot" : "Galvorite Ingot",
-  "itemGroup.galvoriteGroup" : "Galvorite Tech",
+  "itemGroup.galvoriteGroup" : "Galvorite",
   "item.galvorite.raw_galvorite" : "Raw Galvorite",
   "item.galvorite.galvorite_nugget" : "Galvorite Nugget",
   "block.galvorite.galvorite_ore": "Galvorite Ore",
@@ -36,5 +36,6 @@
   "tooltip.galvorite.shimmer_helm_resistance" : "Prevents negative status effects and provides Resistance I when worn.",
   "tooltip.galvorite.galvorite_sword" : "Gives extra experience when killing things.",
   "tooltip.galvorite.galvorite_axe" : "Has a 25% chance to apply the slowness effect on a critical hit.",
-  "enchantment.galvorite.spell_returning" : "\u00a72Spell of Returning\u00a7r"
+  "enchantment.galvorite.spell_returning" : "\u00a72Spell of Returning\u00a7r",
+  "enchantment.galvorite.spell_warping" : "\u00A75Spell of Warping\u00a7r"
 }
