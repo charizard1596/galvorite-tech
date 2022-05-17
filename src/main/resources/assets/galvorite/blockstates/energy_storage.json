@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "galvorite:block/energy_storage"
+    }
+  }
+}

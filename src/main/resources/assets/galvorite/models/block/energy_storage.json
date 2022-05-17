@@ -1,0 +1,12 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "particle": "galvorite:block/blocktexture",
+    "down": "galvorite:block/blocktexture",
+    "up": "galvorite:block/blocktexture",
+    "east": "galvorite:block/blocktexture",
+    "west": "galvorite:block/blocktexture",
+    "north": "galvorite:block/datablocktexture",
+    "south": "galvorite:block/blocktexture"
+  }
+}

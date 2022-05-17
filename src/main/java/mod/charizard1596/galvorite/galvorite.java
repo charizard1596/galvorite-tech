@@ -4,6 +4,7 @@ import mod.charizard1596.galvorite.blocks.modBlocks;
 import mod.charizard1596.galvorite.enchantment.modEnchantments;
 import mod.charizard1596.galvorite.items.modItems;
 
+import mod.charizard1596.galvorite.tileentity.modTileEntities;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 
@@ -58,6 +59,7 @@ public class galvorite
         modItems.register(modEventBus);
         modBlocks.register(modEventBus);
         modEnchantments.register(modEventBus);
+        modTileEntities.register(modEventBus);
         // Register ourselves for server and other game events we are interested in
         MinecraftForge.EVENT_BUS.register(this);
     }
