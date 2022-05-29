@@ -35,16 +35,15 @@ public class warpingSpellEnchantment extends Enchantment {
         super.doPostAttack(target, attacker, level);
         if (Math.random() < 0.1) {
             if (attacker instanceof PlayerEntity && target instanceof PlayerEntity) {
-                PlayerEntity playerattacker = (PlayerEntity) attacker;
-                if (EnchantmentHelper.getItemEnchantmentLevel(modEnchantments.SPELL_WARPING.get(), playerattacker.getItemBySlot(EquipmentSlotType.MAINHAND)) != 0) {
+                if (EnchantmentHelper.getItemEnchantmentLevel(modEnchantments.SPELL_WARPING.get(), ((PlayerEntity) attacker).getItemBySlot(EquipmentSlotType.MAINHAND)) != 0) {
                     for (int i = 0; i < 16; ++i) {
-                        double d3 = playerattacker.getX() + (playerattacker.getRandom().nextDouble() - 0.5D) * 16.0D;
-                        double d4 = MathHelper.clamp(playerattacker.getY() + (double) (playerattacker.getRandom().nextInt(16) - 8), 0.0D, (double) (attacker.level.getHeight() - 1));
-                        double d5 = playerattacker.getZ() + (playerattacker.getRandom().nextDouble() - 0.5D) * 16.0D;
-                        if (attacker.isPassenger()) {
-                            attacker.stopRiding();
+                        double d3 = target.getX() + (target.getRandom().nextDouble() - 0.5D) * 16.0D;
+                        double d4 = MathHelper.clamp(target.getY() + (double) (target.getRandom().nextInt(16) - 8), 0.0D, (double) (attacker.level.getHeight() - 1));
+                        double d5 = target.getZ() + (target.getRandom().nextDouble() - 0.5D) * 16.0D;
+                        if (target.isPassenger()) {
+                            target.stopRiding();
                         }
-                        playerattacker.randomTeleport(d3, d4, d5, true);
+                        target.randomTeleport(d3, d4, d5, true);
                     }
                 }
             }
@@ -55,7 +54,7 @@ public class warpingSpellEnchantment extends Enchantment {
         super.doPostHurt(target, attacker, level);
         if (Math.random() < 0.1) {
             if (target instanceof PlayerEntity) {
-                if (EnchantmentHelper.getItemEnchantmentLevel(modEnchantments.SPELL_WARPING.get(), target.getItemBySlot(EquipmentSlotType.MAINHAND)) != 0) {
+                //if (EnchantmentHelper.getItemEnchantmentLevel(modEnchantments.SPELL_WARPING.get(), target.getItemBySlot(EquipmentSlotType.CHEST)) != 0) {
                     for (int i = 0; i < 16; ++i) {
                         double d3 = target.getX() + (target.getRandom().nextDouble() - 0.5D) * 16.0D;
                         double d4 = MathHelper.clamp(target.getY() + (double) (target.getRandom().nextInt(16) - 8), 0.0D, (double) (attacker.level.getHeight() - 1));
@@ -65,7 +64,7 @@ public class warpingSpellEnchantment extends Enchantment {
                         }
                         target.randomTeleport(d3, d4, d5, true);
                     }
-                }
+                //}
             }
         }
     }

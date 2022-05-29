@@ -1,11 +1,57 @@
+
 {
   "multipart": [
     {
       "when": {
-        "north": "true"
+        "facing": "up"
       },
       "apply": {
-        "model": "galvorite:block/wire_side"
+        "model": "galvorite:block/wire",
+        "x": 270
+      }
+    },
+    {
+      "when": {
+        "facing": "down"
+      },
+      "apply": {
+        "model": "galvorite:block/wire",
+        "x": 90
+      }
+    },
+    {
+      "when": {
+        "facing": "north"
+      },
+      "apply": {
+        "model": "galvorite:block/wire"
+      }
+    },
+    {
+      "when": {
+        "facing": "south"
+      },
+      "apply": {
+        "model": "galvorite:block/wire",
+        "y": 180
+      }
+    },
+    {
+      "when": {
+        "facing": "east"
+      },
+      "apply": {
+        "model": "galvorite:block/wire",
+        "y": 90
+      }
+    },
+    {
+      "when": {
+        "facing": "west"
+      },
+      "apply": {
+        "model": "galvorite:block/wire",
+        "y": 270
       }
     },
     {
@@ -14,7 +60,42 @@
       },
       "apply": {
         "model": "galvorite:block/wire_side",
-        "y": 90,
+        "y": 90
+      }
+    },
+    {
+      "when": {
+        "up": "true"
+      },
+      "apply": {
+        "model": "galvorite:block/wire_side",
+        "x": 270
+      }
+    },
+    {
+      "when": {
+        "down": "true"
+      },
+      "apply": {
+        "model": "galvorite:block/wire_side",
+        "x": 90
+      }
+    },
+    {
+      "when": {
+        "west": "true"
+      },
+      "apply": {
+        "model": "galvorite:block/wire_side",
+        "y": 270
+      }
+    },
+    {
+      "when": {
+        "north": "true"
+      },
+      "apply": {
+        "model": "galvorite:block/wire_side",
         "uvlock": true
       }
     },
@@ -27,108 +108,7 @@
         "y": 180,
         "uvlock": true
       }
-    },
-    {
-      "when": {
-        "west": "true"
-      },
-      "apply": {
-        "model": "galvorite:block/wire_side",
-        "y": 270,
-        "uvlock": true
-      }
-    },
-    {
-      "when": {
-        "up": "true"
-      },
-      "apply": {
-        "model": "galvorite:block/wire_side",
-        "x": 270,
-        "uvlock": true
-      }
-    },
-    {
-      "when": {
-        "down": "true"
-      },
-      "apply": {
-        "model": "galvorite:block/wire_side",
-        "x": 90,
-        "uvlock": true
-      }
-    },
-    {
-      "when": {
-        "north": "false"
-      },
-      "apply": [
-        {
-          "model": "galvorite:block/wire_noconnect"
-        }
-      ]
-    },
-    {
-      "when": {
-        "east": "false"
-      },
-      "apply": [
-        {
-          "model": "galvorite:block/wire_noconnect",
-          "weight": 2,
-          "y": 90,
-          "uvlock": true
-        }
-      ]
-    },
-    {
-      "when": {
-        "south": "false"
-      },
-      "apply": [
-        {
-          "model": "galvorite:block/wire_noconnect",
-          "y": 180,
-          "uvlock": true
-        }
-      ]
-    },
-    {
-      "when": {
-        "west": "false"
-      },
-      "apply": [
-        {
-          "model": "galvorite:block/wire_noconnect",
-          "y": 270,
-          "uvlock": true
-        }
-      ]
-    },
-    {
-      "when": {
-        "up": "false"
-      },
-      "apply": [
-        {
-          "model": "galvorite:block/wire_noconnect",
-          "x": 270,
-          "uvlock": true
-        }
-      ]
-    },
-    {
-      "when": {
-        "down": "false"
-      },
-      "apply": [
-        {
-          "model": "galvorite:block/wire_noconnect",
-          "weight": 2,
-          "x": 90,
-          "uvlock": true
-        }
-      ]
     }
   ]
 }
+

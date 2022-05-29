@@ -1,0 +1,22 @@
+{
+	"credit": "Made with Blockbench",
+	"textures": {
+		"0": "galvorite:block/wire_outside_powered",
+		"1": "galvorite:block/wire_inside",
+		"particle": "galvorite:block/wire_outside_powered"
+	},
+	"elements": [
+		{
+			"from": [4, 4, 4],
+			"to": [12, 12, 12],
+			"faces": {
+				"north": {"uv": [5, 5, 11, 11], "texture": "#1"},
+				"east": {"uv": [4, 4, 12, 12], "texture": "#0"},
+				"south": {"uv": [5, 5, 11, 11], "texture": "#1"},
+				"west": {"uv": [12, 4, 4, 12], "texture": "#0"},
+				"up": {"uv": [4, 4, 12, 12], "rotation": 270, "texture": "#0"},
+				"down": {"uv": [4, 4, 12, 12], "rotation": 90, "texture": "#0"}
+			}
+		}
+	]
+}

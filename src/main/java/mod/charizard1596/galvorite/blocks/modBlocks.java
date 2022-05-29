@@ -1,6 +1,7 @@
 package mod.charizard1596.galvorite.blocks;
 
 import mod.charizard1596.galvorite.blocks.custom.energyStorageBlock;
+import mod.charizard1596.galvorite.blocks.custom.infiniteEnergyBlock;
 import mod.charizard1596.galvorite.blocks.custom.wireBlock;
 import mod.charizard1596.galvorite.galvorite;
 import mod.charizard1596.galvorite.blocks.custom.recyclerBlock;
@@ -31,7 +32,7 @@ public class modBlocks {
     public static final RegistryObject<Block> GALVORITE_TROPHY = registerBlock("galvorite_trophy", () -> new Block(AbstractBlock.Properties.of(Material.HEAVY_METAL).harvestLevel(3).harvestTool(ToolType.PICKAXE).requiresCorrectToolForDrops().strength(15f).noOcclusion()));
     public static final RegistryObject<Block> WIRE = registerBlock("wire", () -> new wireBlock(AbstractBlock.Properties.of(Material.WOOL).harvestTool(ToolType.AXE).strength(3f).noOcclusion()));
     public static final RegistryObject<Block> ENERGY_STORAGE = registerBlock("energy_storage", () -> new energyStorageBlock(AbstractBlock.Properties.of(Material.SPONGE)));
-
+    public static final RegistryObject<Block> INFINITE_ENERGY_BLOCK = registerBlock("infinite_energy_block", () -> new infiniteEnergyBlock(AbstractBlock.Properties.of(Material.SPONGE)));
     private static <T extends Block>RegistryObject<T> registerBlock (String name, Supplier<T> block) {
       RegistryObject<T> toReturn = BLOCKS.register(name, block);
         registerBlockItem(name,toReturn);
