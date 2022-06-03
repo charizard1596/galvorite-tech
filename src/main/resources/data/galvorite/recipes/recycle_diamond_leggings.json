@@ -1,0 +1,12 @@
+{
+  "type": "galvorite:recycler",
+  "ingredients": [
+    {
+      "item": "minecraft:diamond_leggings"
+    }
+  ],
+  "output": {
+    "item": "minecraft:diamond",
+    "count": 5
+  }
+}

@@ -37,5 +37,6 @@
   "tooltip.galvorite.galvorite_sword" : "Gives extra experience when killing things.",
   "tooltip.galvorite.galvorite_axe" : "Has a 25% chance to apply the slowness effect on a critical hit.",
   "enchantment.galvorite.spell_returning" : "\u00a72Spell of Returning\u00a7r",
-  "enchantment.galvorite.spell_warping" : "\u00A75Spell of Warping\u00a7r"
+  "enchantment.galvorite.spell_warping" : "\u00A75Spell of Warping\u00a7r",
+  "screen.galvorite.recycler": "Recycler"
 }

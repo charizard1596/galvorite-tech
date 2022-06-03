@@ -1,0 +1,12 @@
+{
+  "type": "galvorite:recycler",
+  "ingredients": [
+    {
+      "item": "minecraft:diamond_chestplate"
+    }
+  ],
+  "output": {
+    "item": "minecraft:diamond",
+    "count": 6
+  }
+}

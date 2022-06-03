@@ -1,13 +1,17 @@
 package mod.charizard1596.galvorite;
 
 import mod.charizard1596.galvorite.blocks.modBlocks;
+import mod.charizard1596.galvorite.container.modContainers;
+import mod.charizard1596.galvorite.data.recipes.modRecipeTypes;
 import mod.charizard1596.galvorite.enchantment.modEnchantments;
 import mod.charizard1596.galvorite.items.modItems;
 
+import mod.charizard1596.galvorite.screen.recyclerScreen;
 import mod.charizard1596.galvorite.tileentity.modTileEntities;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 
+import net.minecraft.client.gui.ScreenManager;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.RenderTypeLookup;
 import net.minecraft.entity.Entity;
@@ -60,6 +64,8 @@ public class galvorite
         modBlocks.register(modEventBus);
         modEnchantments.register(modEventBus);
         modTileEntities.register(modEventBus);
+        modContainers.register(modEventBus);
+        modRecipeTypes.register(modEventBus);
         // Register ourselves for server and other game events we are interested in
         MinecraftForge.EVENT_BUS.register(this);
     }
@@ -67,6 +73,8 @@ public class galvorite
         RenderTypeLookup.setRenderLayer(modBlocks.DIAMOND_TROPHY.get(), RenderType.cutout());
         RenderTypeLookup.setRenderLayer(modBlocks.NETHERITE_TROPHY.get(), RenderType.cutout());
         RenderTypeLookup.setRenderLayer(modBlocks.GALVORITE_TROPHY.get(), RenderType.cutout());
+        ScreenManager.register(modContainers.RECYCLER_CONTAINER.get(),
+                recyclerScreen::new);
     }
     private void setup(final FMLCommonSetupEvent event)
     {
