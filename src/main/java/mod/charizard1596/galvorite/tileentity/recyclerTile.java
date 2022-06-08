@@ -10,6 +10,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityType;
@@ -125,9 +126,12 @@ public class recyclerTile extends energyTile implements ITickableTileEntity {
                 .getRecipeFor(modRecipeTypes.RECYCLER_RECIPE, inv, level);
 
         recipe.ifPresent(iRecipe -> {
-            ItemStack output = iRecipe.getResultItem();
-            craftTheItem(output);
-            setChanged();
+            if (this.energy >= 5) {
+                subtractEnergy(5);
+                ItemStack output = iRecipe.getResultItem();
+                craftTheItem(output);
+                setChanged();
+            }
         });
     }
 
@@ -141,9 +145,12 @@ public class recyclerTile extends energyTile implements ITickableTileEntity {
     public void tick() {
         if (level.isClientSide)
             return;
-        if (this.energy >= 5) {
-            subtractEnergy(5);
-            craft();
+        craft();
+        if (this.energy > 0) {
+            level.setBlockAndUpdate(this.getBlockPos(),this.getBlockState().setValue(BlockStateProperties.LIT,true));
+        }
+        if (this.energy <= 0 && this.getBlockState().getValue(BlockStateProperties.LIT)) {
+            level.setBlockAndUpdate(this.getBlockPos(),this.getBlockState().setValue(BlockStateProperties.LIT,false));
         }
     }
 

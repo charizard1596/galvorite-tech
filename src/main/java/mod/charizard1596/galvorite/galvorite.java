@@ -6,11 +6,15 @@ import mod.charizard1596.galvorite.data.recipes.modRecipeTypes;
 import mod.charizard1596.galvorite.enchantment.modEnchantments;
 import mod.charizard1596.galvorite.items.modItems;
 
+import mod.charizard1596.galvorite.network.jetpackMessage.jetpackMessage;
+import mod.charizard1596.galvorite.network.network;
 import mod.charizard1596.galvorite.screen.recyclerScreen;
+import mod.charizard1596.galvorite.structure.modStructures;
 import mod.charizard1596.galvorite.tileentity.modTileEntities;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.ScreenManager;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.RenderTypeLookup;
@@ -22,6 +26,8 @@ import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Effects;
 import net.minecraft.world.World;
+import net.minecraftforge.client.event.GuiScreenEvent;
+import net.minecraftforge.client.event.InputEvent;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
@@ -66,6 +72,7 @@ public class galvorite
         modTileEntities.register(modEventBus);
         modContainers.register(modEventBus);
         modRecipeTypes.register(modEventBus);
+        modStructures.register(modEventBus);
         // Register ourselves for server and other game events we are interested in
         MinecraftForge.EVENT_BUS.register(this);
     }
@@ -79,8 +86,7 @@ public class galvorite
     private void setup(final FMLCommonSetupEvent event)
     {
         // some preinit code
-        LOGGER.info("HELLO FROM PREINIT");
-        LOGGER.info("DIRT BLOCK >> {}", Blocks.DIRT.getRegistryName());
+        network.init();
     }
 
 
@@ -114,7 +120,10 @@ public class galvorite
             LOGGER.info("HELLO from Register Block");
         }
     }
-
+    @SubscribeEvent
+    public void onKey(InputEvent.KeyInputEvent event) {
+        network.CHANNEL.sendToServer(new jetpackMessage(Minecraft.getInstance().options.keyJump.isDown()));
+    }
     @SubscribeEvent
     public void galvoriteSwordKill (LivingDeathEvent event) {
         Entity killer = event.getSource().getEntity();
