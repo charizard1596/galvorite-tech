@@ -6,6 +6,8 @@ import net.minecraft.item.ArmorItem;
 import net.minecraft.item.IArmorMaterial;
 import net.minecraft.util.math.BlockPos;
 
+import net.minecraft.item.Item.Properties;
+
 public class energyArmorItem extends ArmorItem {
 
     public energyArmorItem(IArmorMaterial pMaterial, EquipmentSlotType pSlot, Properties pProperties) {

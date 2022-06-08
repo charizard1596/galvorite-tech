@@ -27,6 +27,8 @@ import net.minecraftforge.fml.common.Mod;
 import javax.annotation.Nullable;
 import java.util.List;
 
+import net.minecraft.item.Item.Properties;
+
 @Mod.EventBusSubscriber(modid = galvorite.MOD_ID)
 public class jetpackItem extends energyArmorItem implements IArmorVanishable {
     public jetpackItem(IArmorMaterial pMaterial, EquipmentSlotType pSlot, Properties pProperties) {
@@ -40,9 +42,9 @@ public class jetpackItem extends energyArmorItem implements IArmorVanishable {
 
     @SubscribeEvent
     public static void onJump(LivingEvent.LivingJumpEvent event) {
-        if (event.getEntityLiving() instanceof PlayerEntity && event.getEntityLiving().getItemBySlot(EquipmentSlotType.CHEST).getItem()==modItems.JETPACK.get() && ((jetpackItem) event.getEntityLiving().getItemBySlot(EquipmentSlotType.CHEST).getItem()).getEnergy()>0) {
-            Vector3d v = event.getEntityLiving().getDeltaMovement();
-            event.getEntityLiving().setDeltaMovement(v.x,0,v.z);
+        if (event.getEntityLiving() instanceof PlayerEntity && event.getEntityLiving().getItemStackFromSlot(EquipmentSlotType.CHEST).getItem()==modItems.JETPACK.get() && ((jetpackItem) event.getEntityLiving().getItemStackFromSlot(EquipmentSlotType.CHEST).getItem()).getEnergy()>0) {
+            Vector3d v = event.getEntityLiving().getMotion();
+            event.getEntityLiving().setMotion(v.x,0,v.z);
         }
     }
 
@@ -51,19 +53,19 @@ public class jetpackItem extends energyArmorItem implements IArmorVanishable {
         if (keyDown) {
             if (this.energy > 0) {
                 this.energy--;
-                Vector3d v = player.getDeltaMovement();
-                player.setDeltaMovement(v.x,0.2,v.z);
+                Vector3d v = player.getMotion();
+                player.setMotion(v.x,0.2,v.z);
                 player.fallDistance = 0;
             }
         }
     }
 
     @Override
-    public void appendHoverText(ItemStack p_77624_1_, @Nullable World p_77624_2_, List<ITextComponent> p_77624_3_, ITooltipFlag p_77624_4_) {
-        super.appendHoverText(p_77624_1_, p_77624_2_, p_77624_3_, p_77624_4_);
+    public void addInformation(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
+        super.addInformation(stack, worldIn, tooltip, flagIn);
         if (Screen.hasShiftDown()){
-            p_77624_3_.add(new TranslationTextComponent("tooltip.galvorite.jetpack"));
-        } else p_77624_3_.add(new TranslationTextComponent("tooltip.galvorite.hold_shift"));
-        p_77624_3_.add(new StringTextComponent("Energy: "+getEnergy()+"/"+getMaxEnergy()).withStyle(TextFormatting.DARK_RED));
+            tooltip.add(new TranslationTextComponent("tooltip.galvorite.jetpack"));
+        } else tooltip.add(new TranslationTextComponent("tooltip.galvorite.hold_shift"));
+        tooltip.add(new StringTextComponent("Energy: "+getEnergy()+"/"+getMaxEnergy()).mergeStyle(TextFormatting.DARK_RED));
     }
 }

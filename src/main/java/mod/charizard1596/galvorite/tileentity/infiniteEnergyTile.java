@@ -7,8 +7,8 @@ import net.minecraft.util.Direction;
 import static net.minecraft.state.properties.BlockStateProperties.FACING;
 
 public class infiniteEnergyTile extends energyTile implements ITickableTileEntity {
-    public infiniteEnergyTile(TileEntityType<?> p_i48289_1_) {
-        super(p_i48289_1_);
+    public infiniteEnergyTile(TileEntityType<?> tileEntityTypeIn) {
+        super(tileEntityTypeIn);
     }
     public infiniteEnergyTile(){
         this(modTileEntities.INFINITE_ENERGY_TILE.get());
@@ -23,7 +23,7 @@ public class infiniteEnergyTile extends energyTile implements ITickableTileEntit
     public void tick() {
         this.energy = Integer.MAX_VALUE;
         for (Direction dir : Direction.values()){
-            doEnergyInsert(1,this.getBlockPos().relative(dir));
+            doEnergyInsert(1,this.getPos().offset(dir));
         }
     }
 }

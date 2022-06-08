@@ -14,12 +14,14 @@ import net.minecraftforge.fml.RegistryObject;
 
 import java.util.UUID;
 
+import net.minecraft.item.Item.Properties;
+
 public class galvoritePickaxeItem extends PickaxeItem {
     private final Multimap<Attribute, AttributeModifier> defaultModifiers;
     protected static final UUID ATTACK_REACH_MODIFIER = UUID.fromString("410cc095-30eb-4f69-bab2-e5c8658e00c5");
-    public galvoritePickaxeItem(IItemTier p_i48478_1_, int p_i48478_2_, float p_i48478_3_, Properties p_i48478_4_) {
-        super(p_i48478_1_, p_i48478_2_, p_i48478_3_, p_i48478_4_);
-        this.defaultModifiers=super.getDefaultAttributeModifiers(EquipmentSlotType.MAINHAND);
+    public galvoritePickaxeItem(IItemTier tier, int attackDamageIn, float attackSpeedIn, Properties builder) {
+        super(tier, attackDamageIn, attackSpeedIn, builder);
+        this.defaultModifiers=super.getAttributeModifiers(EquipmentSlotType.MAINHAND);
     }
 
     @Override

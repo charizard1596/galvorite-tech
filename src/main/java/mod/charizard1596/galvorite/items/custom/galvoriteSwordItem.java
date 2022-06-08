@@ -12,15 +12,17 @@ import net.minecraft.world.World;
 import javax.annotation.Nullable;
 import java.util.List;
 
+import net.minecraft.item.Item.Properties;
+
 public class galvoriteSwordItem extends SwordItem {
-    public galvoriteSwordItem(IItemTier p_i48460_1_, int p_i48460_2_, float p_i48460_3_, Properties p_i48460_4_) {
-        super(p_i48460_1_, p_i48460_2_, p_i48460_3_, p_i48460_4_);
+    public galvoriteSwordItem(IItemTier tier, int attackDamageIn, float attackSpeedIn, Properties builderIn) {
+        super(tier, attackDamageIn, attackSpeedIn, builderIn);
     }
     @Override
-    public void appendHoverText(ItemStack p_77624_1_, @Nullable World p_77624_2_, List<ITextComponent> p_77624_3_, ITooltipFlag p_77624_4_) {
-        super.appendHoverText(p_77624_1_, p_77624_2_, p_77624_3_, p_77624_4_);
+    public void addInformation(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
+        super.addInformation(stack, worldIn, tooltip, flagIn);
         if (Screen.hasShiftDown()){
-            p_77624_3_.add(new TranslationTextComponent("tooltip.galvorite.galvorite_sword"));
-        } else p_77624_3_.add(new TranslationTextComponent("tooltip.galvorite.hold_shift"));
+            tooltip.add(new TranslationTextComponent("tooltip.galvorite.galvorite_sword"));
+        } else tooltip.add(new TranslationTextComponent("tooltip.galvorite.hold_shift"));
     }
 }

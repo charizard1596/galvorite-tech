@@ -15,8 +15,8 @@ import java.util.Random;
 import static net.minecraft.state.properties.BlockStateProperties.*;
 
 public class wireTile extends energyTile implements ITickableTileEntity {
-    public wireTile(TileEntityType<?> p_i48289_1_) {
-        super(p_i48289_1_);
+    public wireTile(TileEntityType<?> tileEntityTypeIn) {
+        super(tileEntityTypeIn);
     }
     public wireTile(){
         this(modTileEntities.WIRE_TILE.get());
@@ -28,23 +28,23 @@ public class wireTile extends energyTile implements ITickableTileEntity {
     }
 
     @Override
-    public void load(BlockState p_230337_1_, CompoundNBT p_230337_2_) {
-        super.load(p_230337_1_, p_230337_2_);
+    public void read(BlockState state, CompoundNBT nbt) {
+        super.read(state, nbt);
     }
 
     @Override
-    public CompoundNBT save(CompoundNBT p_189515_1_) {
-        return super.save(p_189515_1_);
+    public CompoundNBT write(CompoundNBT compound) {
+        return super.write(compound);
     }
 
     @Override
     public void tick() {
         if (this.energy > 0){
-            doEnergyInsert(1,this.getBlockPos().relative(this.getBlockState().getValue(FACING)));
+            doEnergyInsert(1,this.getPos().offset(this.getBlockState().get(FACING)));
         }
         for (Direction dir : Direction.values()){
-            if (dir != this.getBlockState().getValue(FACING)) {
-                doEnergyExtract(1, this.getBlockPos().relative(dir));
+            if (dir != this.getBlockState().get(FACING)) {
+                doEnergyExtract(1, this.getPos().offset(dir));
             }
         }
     }

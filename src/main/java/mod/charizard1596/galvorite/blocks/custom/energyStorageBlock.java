@@ -20,9 +20,11 @@ import net.minecraft.world.World;
 
 import javax.annotation.Nullable;
 
+import net.minecraft.block.AbstractBlock.Properties;
+
 public class energyStorageBlock extends Block {
-    public energyStorageBlock(Properties p_i48440_1_) {
-        super(p_i48440_1_);
+    public energyStorageBlock(Properties properties) {
+        super(properties);
     }
     @Override
     public boolean hasTileEntity(BlockState state) {
@@ -35,15 +37,15 @@ public class energyStorageBlock extends Block {
         return new energyStorageTile();
     }
     private energyStorageTile getTE(World world, BlockPos pos) {
-        return (energyStorageTile) world.getBlockEntity(pos);
+        return (energyStorageTile) world.getTileEntity(pos);
     }
     @Override
-    public ActionResultType use(BlockState p_225533_1_, World p_225533_2_, BlockPos p_225533_3_, PlayerEntity p_225533_4_, Hand p_225533_5_, BlockRayTraceResult p_225533_6_) {
-        if (!p_225533_2_.isClientSide){
-            int energy = getTE(p_225533_2_,p_225533_3_).getEnergy();
+    public ActionResultType onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
+        if (!worldIn.isRemote){
+            int energy = getTE(worldIn,pos).getEnergy();
             StringTextComponent message = new StringTextComponent(Integer.toString(energy));
-            message.getStyle().applyFormat(TextFormatting.GREEN);
-            p_225533_4_.sendMessage(message,p_225533_4_.getUUID());
+            message.getStyle().applyFormatting(TextFormatting.GREEN);
+            player.sendMessage(message,player.getUniqueID());
         }
         return ActionResultType.SUCCESS;
     }

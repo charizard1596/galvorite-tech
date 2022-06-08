@@ -41,24 +41,26 @@ import net.minecraftforge.fml.network.NetworkHooks;
 import javax.annotation.Nullable;
 
 
+import net.minecraft.block.AbstractBlock.Properties;
+
 public class recyclerBlock extends Block {
-    public static final DirectionProperty FACING = HorizontalBlock.FACING;
+    public static final DirectionProperty FACING = HorizontalBlock.HORIZONTAL_FACING;
     public static final BooleanProperty LIT = BlockStateProperties.LIT;
     public recyclerBlock(Properties properties) {
         super(properties);
-        this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH).setValue(LIT, false));
+        this.setDefaultState(this.stateContainer.getBaseState().with(FACING, Direction.NORTH).with(LIT, false));
     }
     @Override
-    public ActionResultType use(BlockState state, World worldIn, BlockPos pos,
+    public ActionResultType onBlockActivated(BlockState state, World worldIn, BlockPos pos,
                                              PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
-        if(!worldIn.isClientSide()) {
-            TileEntity tileEntity = worldIn.getBlockEntity(pos);
+        if(!worldIn.isRemote()) {
+            TileEntity tileEntity = worldIn.getTileEntity(pos);
 
             if(!player.isCrouching()) {
                 if(tileEntity instanceof recyclerTile) {
                     INamedContainerProvider containerProvider = createContainerProvider(worldIn, pos);
 
-                    NetworkHooks.openGui(((ServerPlayerEntity)player), containerProvider, tileEntity.getBlockPos());
+                    NetworkHooks.openGui(((ServerPlayerEntity)player), containerProvider, tileEntity.getPos());
                 } else {
                     throw new IllegalStateException("Our Container provider is missing!");
                 }
@@ -82,13 +84,13 @@ public class recyclerBlock extends Block {
         };
     }
 
-    protected void createBlockStateDefinition(StateContainer.Builder<Block, BlockState> p_206840_1_) {
-        p_206840_1_.add(FACING, LIT);
+    protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
+        builder.add(FACING, LIT);
     }
     @Nullable
     @Override
     public BlockState getStateForPlacement(BlockItemUseContext context) {
-        return this.defaultBlockState().setValue(FACING, context.getHorizontalDirection().getOpposite());
+        return this.getDefaultState().with(FACING, context.getPlacementHorizontalFacing().getOpposite());
     }
     @Nullable
     @Override
@@ -185,15 +187,15 @@ public void spawnItem(World world,BlockPos pos,ItemStack item) {
     public BlockState getStateForPlacement(BlockItemUseContext context) {
         return this.defaultBlockState().setValue(FACING, context.getHorizontalDirection().getOpposite());
     }
-    public BlockState rotate(BlockState p_185499_1_, Rotation p_185499_2_) {
-        return p_185499_1_.setValue(FACING, p_185499_2_.rotate(p_185499_1_.getValue(FACING)));
+    public BlockState rotate(BlockState state, Rotation rot) {
+        return state.setValue(FACING, rot.rotate(state.getValue(FACING)));
     }
-    protected void createBlockStateDefinition(StateContainer.Builder<Block, BlockState> p_206840_1_) {
-        p_206840_1_.add(FACING, LIT);
+    protected void createBlockStateDefinition(StateContainer.Builder<Block, BlockState> builder) {
+        builder.add(FACING, LIT);
     }
 
     @Override
-    public void neighborChanged(BlockState blockstate, World world, BlockPos pos, Block p_220069_4_, BlockPos p_220069_5_, boolean p_220069_6_) {
+    public void neighborChanged(BlockState blockstate, World world, BlockPos pos, Block blockIn, BlockPos fromPos, boolean isMoving) {
         if (!world.isClientSide) {
             if (world.getBlockState(pos.below()).getBlock().is(Blocks.CAMPFIRE) || world.getBlockState(pos.below()).getBlock().is(Blocks.FIRE)) {
                 if (world.getBlockState(pos.below()).getBlock().is(Blocks.CAMPFIRE)) {
@@ -205,7 +207,7 @@ public void spawnItem(World world,BlockPos pos,ItemStack item) {
                 } else world.setBlockAndUpdate(pos, blockstate.setValue(LIT, true));
             } else world.setBlockAndUpdate(pos, blockstate.setValue(LIT, false));
         }
-        super.neighborChanged(blockstate, world, pos, p_220069_4_, p_220069_5_, p_220069_6_);
+        super.neighborChanged(blockstate, world, pos, blockIn, fromPos, isMoving);
     }
 
 

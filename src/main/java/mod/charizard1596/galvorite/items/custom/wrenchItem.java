@@ -11,21 +11,23 @@ import net.minecraft.world.World;
 
 import static net.minecraft.state.properties.BlockStateProperties.FACING;
 
+import net.minecraft.item.Item.Properties;
+
 public class wrenchItem extends Item {
 
-    public wrenchItem(Properties p_i48487_1_) {
-        super(p_i48487_1_);
+    public wrenchItem(Properties properties) {
+        super(properties);
     }
 
     @Override
-    public ActionResultType useOn(ItemUseContext context) {
-        if (!context.getLevel().isClientSide())
+    public ActionResultType onItemUse(ItemUseContext context) {
+        if (!context.getWorld().isRemote())
         {
-            if (context.getLevel().getBlockState(context.getClickedPos()).getBlock() == modBlocks.WIRE.get())
+            if (context.getWorld().getBlockState(context.getPos()).getBlock() == modBlocks.WIRE.get())
             {
                 if (context.getPlayer().isCrouching())
                 {
-                    context.getLevel().setBlockAndUpdate(context.getClickedPos(), context.getLevel().getBlockState(context.getClickedPos()).rotate(context.getLevel(),context.getClickedPos(),Rotation.CLOCKWISE_90));
+                    context.getWorld().setBlockState(context.getPos(), context.getWorld().getBlockState(context.getPos()).rotate(context.getWorld(),context.getPos(),Rotation.CLOCKWISE_90));
                 }
             }
         }

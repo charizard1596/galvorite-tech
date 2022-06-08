@@ -13,12 +13,14 @@ import net.minecraftforge.common.ForgeMod;
 
 import java.util.UUID;
 
+import net.minecraft.item.Item.Properties;
+
 public class galvoriteShovelItem extends ShovelItem {
     private final Multimap<Attribute, AttributeModifier> defaultModifiers;
     protected static final UUID ATTACK_REACH_MODIFIER = UUID.fromString("bb48d213-2c27-44b9-b406-635ca404ba07");
-    public galvoriteShovelItem(IItemTier p_i48478_1_, float p_i48478_2_, float p_i48478_3_, Properties p_i48478_4_) {
-        super(p_i48478_1_, p_i48478_2_, p_i48478_3_, p_i48478_4_);
-        this.defaultModifiers=super.getDefaultAttributeModifiers(EquipmentSlotType.MAINHAND);
+    public galvoriteShovelItem(IItemTier tier, float attackDamageIn, float attackSpeedIn, Properties builder) {
+        super(tier, attackDamageIn, attackSpeedIn, builder);
+        this.defaultModifiers=super.getAttributeModifiers(EquipmentSlotType.MAINHAND);
     }
 
     @Override

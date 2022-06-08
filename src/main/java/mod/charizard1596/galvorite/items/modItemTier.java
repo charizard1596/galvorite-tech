@@ -13,7 +13,7 @@ public enum modItemTier implements IItemTier {
             5f,
             20,
 
-            () -> {return Ingredient.of(modItems.GALVORITE_INGOT.get());});
+            () -> {return Ingredient.fromItems(modItems.GALVORITE_INGOT.get());});
     private final int level;
     private final int uses;
     private final float speed;
@@ -31,32 +31,32 @@ public enum modItemTier implements IItemTier {
     }
 
     @Override
-    public int getUses() {
+    public int getMaxUses() {
         return uses;
     }
 
     @Override
-    public float getSpeed() {
+    public float getEfficiency() {
         return speed;
     }
 
     @Override
-    public float getAttackDamageBonus() {
+    public float getAttackDamage() {
         return damage;
     }
 
     @Override
-    public int getLevel() {
+    public int getHarvestLevel() {
         return level;
     }
 
     @Override
-    public int getEnchantmentValue() {
+    public int getEnchantability() {
         return enchantmentValue;
     }
 
     @Override
-    public Ingredient getRepairIngredient() {
-        return repairIngredient.get();
+    public Ingredient getRepairMaterial() {
+        return repairIngredient.getValue();
     }
 }

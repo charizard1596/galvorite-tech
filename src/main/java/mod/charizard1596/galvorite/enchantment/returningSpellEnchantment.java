@@ -24,30 +24,32 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import net.minecraft.enchantment.Enchantment.Rarity;
+
 @Mod.EventBusSubscriber(modid = galvorite.MOD_ID)
 public class returningSpellEnchantment extends Enchantment {
     private static ArrayList<ItemStack> list = new ArrayList<>();
 
-    protected returningSpellEnchantment(Rarity p_i46731_1_, EnchantmentType p_i46731_2_, EquipmentSlotType[] p_i46731_3_) {
-        super(p_i46731_1_, p_i46731_2_, p_i46731_3_);
+    protected returningSpellEnchantment(Rarity rarityIn, EnchantmentType typeIn, EquipmentSlotType[] slots) {
+        super(rarityIn, typeIn, slots);
     }
 
     @SubscribeEvent
     public static void onDeath(LivingDeathEvent event) {
         if (event.getEntityLiving() instanceof PlayerEntity) {
             PlayerEntity player = (PlayerEntity) event.getEntityLiving();
-            for (int i = 0; i < player.inventory.items.size(); i++) {
-                if (EnchantmentHelper.getItemEnchantmentLevel(modEnchantments.SPELL_RETURNING.get(), player.inventory.items.get(i)) != 0) {
-                    list.add(player.inventory.items.get(i));
+            for (int i = 0; i < player.inventory.mainInventory.size(); i++) {
+                if (EnchantmentHelper.getEnchantmentLevel(modEnchantments.SPELL_RETURNING.get(), player.inventory.mainInventory.get(i)) != 0) {
+                    list.add(player.inventory.mainInventory.get(i));
                 }
             }
-            for (int i = 0; i < player.inventory.armor.size(); i++) {
-                if (EnchantmentHelper.getItemEnchantmentLevel(modEnchantments.SPELL_RETURNING.get(), player.inventory.armor.get(i)) != 0) {
-                    list.add(player.inventory.armor.get(i));
+            for (int i = 0; i < player.inventory.armorInventory.size(); i++) {
+                if (EnchantmentHelper.getEnchantmentLevel(modEnchantments.SPELL_RETURNING.get(), player.inventory.armorInventory.get(i)) != 0) {
+                    list.add(player.inventory.armorInventory.get(i));
                 }
             }
-            if (EnchantmentHelper.getItemEnchantmentLevel(modEnchantments.SPELL_RETURNING.get(), player.inventory.offhand.get(0)) != 0) {
-                list.add(player.inventory.offhand.get(0));
+            if (EnchantmentHelper.getEnchantmentLevel(modEnchantments.SPELL_RETURNING.get(), player.inventory.offHandInventory.get(0)) != 0) {
+                list.add(player.inventory.offHandInventory.get(0));
             }
         }
     }
@@ -55,7 +57,7 @@ public class returningSpellEnchantment extends Enchantment {
     @SubscribeEvent
     public static void onDrop(LivingDropsEvent event) {
         if (event.getEntityLiving() instanceof PlayerEntity) {
-            event.getDrops().removeIf((ei) -> EnchantmentHelper.getItemEnchantmentLevel(modEnchantments.SPELL_RETURNING.get(), ei.getItem()) > 0);
+            event.getDrops().removeIf((ei) -> EnchantmentHelper.getEnchantmentLevel(modEnchantments.SPELL_RETURNING.get(), ei.getItem()) > 0);
         }
     }
 
@@ -65,12 +67,12 @@ public class returningSpellEnchantment extends Enchantment {
             Map<Enchantment, Integer> enchantmentIntegerMap = EnchantmentHelper.getEnchantments(list.get(i));
             enchantmentIntegerMap.remove(modEnchantments.SPELL_RETURNING.get());
             EnchantmentHelper.setEnchantments(enchantmentIntegerMap,list.get(i));
-            event.getPlayer().inventory.add(list.get(i));
+            event.getPlayer().inventory.addItemStackToInventory(list.get(i));
             }
         }
 
     @Override
-    public boolean isTreasureOnly() {
+    public boolean isTreasureEnchantment() {
         return true;
     }
 

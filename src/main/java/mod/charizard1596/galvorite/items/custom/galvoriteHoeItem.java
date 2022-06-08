@@ -10,12 +10,14 @@ import net.minecraftforge.common.ForgeMod;
 
 import java.util.UUID;
 
+import net.minecraft.item.Item.Properties;
+
 public class galvoriteHoeItem extends HoeItem {
     private final Multimap<Attribute, AttributeModifier> defaultModifiers;
     protected static final UUID ATTACK_REACH_MODIFIER = UUID.fromString("6d7cd010-d2e5-4b0e-902a-f08a469fd77b");
-    public galvoriteHoeItem(IItemTier p_i48478_1_, int p_i48478_2_, float p_i48478_3_, Properties p_i48478_4_) {
-        super(p_i48478_1_, p_i48478_2_, p_i48478_3_, p_i48478_4_);
-        this.defaultModifiers=super.getDefaultAttributeModifiers(EquipmentSlotType.MAINHAND);
+    public galvoriteHoeItem(IItemTier tier, int attackDamageIn, float attackSpeedIn, Properties builder) {
+        super(tier, attackDamageIn, attackSpeedIn, builder);
+        this.defaultModifiers=super.getAttributeModifiers(EquipmentSlotType.MAINHAND);
     }
 
     @Override

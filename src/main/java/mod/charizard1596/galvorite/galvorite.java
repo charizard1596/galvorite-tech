@@ -77,16 +77,19 @@ public class galvorite
         MinecraftForge.EVENT_BUS.register(this);
     }
     private void doClientStuff(final FMLClientSetupEvent event) {
-        RenderTypeLookup.setRenderLayer(modBlocks.DIAMOND_TROPHY.get(), RenderType.cutout());
-        RenderTypeLookup.setRenderLayer(modBlocks.NETHERITE_TROPHY.get(), RenderType.cutout());
-        RenderTypeLookup.setRenderLayer(modBlocks.GALVORITE_TROPHY.get(), RenderType.cutout());
-        ScreenManager.register(modContainers.RECYCLER_CONTAINER.get(),
+        RenderTypeLookup.setRenderLayer(modBlocks.DIAMOND_TROPHY.get(), RenderType.getCutout());
+        RenderTypeLookup.setRenderLayer(modBlocks.NETHERITE_TROPHY.get(), RenderType.getCutout());
+        RenderTypeLookup.setRenderLayer(modBlocks.GALVORITE_TROPHY.get(), RenderType.getCutout());
+        ScreenManager.registerFactory(modContainers.RECYCLER_CONTAINER.get(),
                 recyclerScreen::new);
     }
     private void setup(final FMLCommonSetupEvent event)
     {
         // some preinit code
         network.init();
+        event.enqueueWork(() -> {
+            modStructures.setupStructures();
+        });
     }
 
 
@@ -122,27 +125,29 @@ public class galvorite
     }
     @SubscribeEvent
     public void onKey(InputEvent.KeyInputEvent event) {
-        network.CHANNEL.sendToServer(new jetpackMessage(Minecraft.getInstance().options.keyJump.isDown()));
+        if (Minecraft.getInstance().player.getItemStackFromSlot(EquipmentSlotType.CHEST).getItem()==modItems.JETPACK.get()){
+            network.CHANNEL.sendToServer(new jetpackMessage(Minecraft.getInstance().gameSettings.keyBindJump.isKeyDown()));
+        }
     }
     @SubscribeEvent
     public void galvoriteSwordKill (LivingDeathEvent event) {
-        Entity killer = event.getSource().getEntity();
+        Entity killer = event.getSource().getTrueSource();
         Entity dead = event.getEntity();
-        World world = event.getEntityLiving().getEntity().level;
-        if (!(dead instanceof PlayerEntity) && killer instanceof PlayerEntity && ((PlayerEntity) killer).getItemInHand(event.getEntityLiving().getUsedItemHand()).getItem() == modItems.GALVORITE_SWORD.get()) {
-            ExperienceOrbEntity xp = new ExperienceOrbEntity(world,killer.getX(),killer.getY(),killer.getZ(),1);
-            world.addFreshEntity(xp);
+        World world = event.getEntityLiving().getEntity().world;
+        if (!(dead instanceof PlayerEntity) && killer instanceof PlayerEntity && ((PlayerEntity) killer).getHeldItem(event.getEntityLiving().getActiveHand()).getItem() == modItems.GALVORITE_SWORD.get()) {
+            ExperienceOrbEntity xp = new ExperienceOrbEntity(world,killer.getPosX(),killer.getPosY(),killer.getPosZ(),1);
+            world.addEntity(xp);
         }
     }
     @SubscribeEvent
     public void onCrit(CriticalHitEvent event) {
-        if (event.getPlayer().getItemBySlot(EquipmentSlotType.MAINHAND).getItem() == modItems.GALVORITE_AXE.get())
+        if (event.getPlayer().getItemStackFromSlot(EquipmentSlotType.MAINHAND).getItem() == modItems.GALVORITE_AXE.get())
         {
             if (event.isVanillaCritical()) {
                 if (Math.random()<0.25) {
                     LivingEntity livingEntity = (LivingEntity) event.getTarget();
                     if (livingEntity != null) {
-                        livingEntity.addEffect(new EffectInstance(Effects.MOVEMENT_SLOWDOWN,200,0));
+                        livingEntity.addPotionEffect(new EffectInstance(Effects.SLOWNESS,200,0));
                     }
                 }
                 event.setResult(Event.Result.ALLOW);

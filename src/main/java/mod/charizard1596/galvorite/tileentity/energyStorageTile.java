@@ -7,8 +7,8 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityType;
 
 public class energyStorageTile extends energyTile {
-    public energyStorageTile(TileEntityType<?> p_i48289_1_) {
-        super(p_i48289_1_);
+    public energyStorageTile(TileEntityType<?> tileEntityTypeIn) {
+        super(tileEntityTypeIn);
     }
     public energyStorageTile(){
         this(modTileEntities.ENERGY_STORAGE_TILE.get());
@@ -20,12 +20,12 @@ public class energyStorageTile extends energyTile {
     }
 
     @Override
-    public void load(BlockState p_230337_1_, CompoundNBT p_230337_2_) {
-        super.load(p_230337_1_, p_230337_2_);
+    public void read(BlockState state, CompoundNBT nbt) {
+        super.read(state, nbt);
     }
 
     @Override
-    public CompoundNBT save(CompoundNBT p_189515_1_) {
-        return super.save(p_189515_1_);
+    public CompoundNBT write(CompoundNBT compound) {
+        return super.write(compound);
     }
 }

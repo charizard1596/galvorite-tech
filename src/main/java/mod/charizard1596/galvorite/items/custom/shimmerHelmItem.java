@@ -20,10 +20,12 @@ import net.minecraft.world.World;
 import javax.annotation.Nullable;
 import java.util.List;
 
+import net.minecraft.item.Item.Properties;
+
 public class shimmerHelmItem extends ArmorItem implements IArmorVanishable {
 
-    public shimmerHelmItem(IArmorMaterial p_i48534_1_, EquipmentSlotType p_i48534_2_, Properties p_i48534_3_) {
-        super(p_i48534_1_, p_i48534_2_, p_i48534_3_);
+    public shimmerHelmItem(IArmorMaterial materialIn, EquipmentSlotType slot, Properties builderIn) {
+        super(materialIn, slot, builderIn);
     }
 
     @Override
@@ -67,76 +69,76 @@ public class shimmerHelmItem extends ArmorItem implements IArmorVanishable {
     }
 
     @Override
-    public void appendHoverText(ItemStack p_77624_1_, @Nullable World p_77624_2_, List<ITextComponent> p_77624_3_, ITooltipFlag p_77624_4_) {
-        if(p_77624_1_.getItem()==(modItems.SHIMMER_HELM_SPEED.get())) {
+    public void addInformation(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
+        if(stack.getItem()==(modItems.SHIMMER_HELM_SPEED.get())) {
             if (Screen.hasShiftDown()){
-                p_77624_3_.add(new TranslationTextComponent("tooltip.galvorite.shimmer_helm_speed"));
-            } else p_77624_3_.add(new TranslationTextComponent("tooltip.galvorite.hold_shift"));
+                tooltip.add(new TranslationTextComponent("tooltip.galvorite.shimmer_helm_speed"));
+            } else tooltip.add(new TranslationTextComponent("tooltip.galvorite.hold_shift"));
         } else
-        if(p_77624_1_.getItem()==(modItems.SHIMMER_HELM_STRENGTH.get())) {
+        if(stack.getItem()==(modItems.SHIMMER_HELM_STRENGTH.get())) {
             if (Screen.hasShiftDown()){
-                p_77624_3_.add(new TranslationTextComponent("tooltip.galvorite.shimmer_helm_strength"));
-            } else p_77624_3_.add(new TranslationTextComponent("tooltip.galvorite.hold_shift"));
+                tooltip.add(new TranslationTextComponent("tooltip.galvorite.shimmer_helm_strength"));
+            } else tooltip.add(new TranslationTextComponent("tooltip.galvorite.hold_shift"));
         } else
-        if(p_77624_1_.getItem()==(modItems.SHIMMER_HELM_HASTE.get())) {
+        if(stack.getItem()==(modItems.SHIMMER_HELM_HASTE.get())) {
             if (Screen.hasShiftDown()){
-                p_77624_3_.add(new TranslationTextComponent("tooltip.galvorite.shimmer_helm_haste"));
-            } else p_77624_3_.add(new TranslationTextComponent("tooltip.galvorite.hold_shift"));
+                tooltip.add(new TranslationTextComponent("tooltip.galvorite.shimmer_helm_haste"));
+            } else tooltip.add(new TranslationTextComponent("tooltip.galvorite.hold_shift"));
         } else
-        if(p_77624_1_.getItem()==(modItems.SHIMMER_HELM_JUMP_BOOST.get())) {
+        if(stack.getItem()==(modItems.SHIMMER_HELM_JUMP_BOOST.get())) {
             if (Screen.hasShiftDown()){
-                p_77624_3_.add(new TranslationTextComponent("tooltip.galvorite.shimmer_helm_jump_boost"));
-            } else p_77624_3_.add(new TranslationTextComponent("tooltip.galvorite.hold_shift"));
+                tooltip.add(new TranslationTextComponent("tooltip.galvorite.shimmer_helm_jump_boost"));
+            } else tooltip.add(new TranslationTextComponent("tooltip.galvorite.hold_shift"));
         } else
-        if (p_77624_1_.getItem()==(modItems.SHIMMER_HELM_RESISTANCE.get())) {
+        if (stack.getItem()==(modItems.SHIMMER_HELM_RESISTANCE.get())) {
             if (Screen.hasShiftDown()){
-                p_77624_3_.add(new TranslationTextComponent("tooltip.galvorite.shimmer_helm_resistance"));
-            } else p_77624_3_.add(new TranslationTextComponent("tooltip.galvorite.hold_shift"));
+                tooltip.add(new TranslationTextComponent("tooltip.galvorite.shimmer_helm_resistance"));
+            } else tooltip.add(new TranslationTextComponent("tooltip.galvorite.hold_shift"));
         } else
-        if(p_77624_1_.getItem()==(modItems.SHIMMER_HELM_REGENERATION.get())) {
+        if(stack.getItem()==(modItems.SHIMMER_HELM_REGENERATION.get())) {
             if (Screen.hasShiftDown()){
-                p_77624_3_.add(new TranslationTextComponent("tooltip.galvorite.shimmer_helm_regeneration"));
-            } else p_77624_3_.add(new TranslationTextComponent("tooltip.galvorite.hold_shift"));
+                tooltip.add(new TranslationTextComponent("tooltip.galvorite.shimmer_helm_regeneration"));
+            } else tooltip.add(new TranslationTextComponent("tooltip.galvorite.hold_shift"));
         } else {
             if (Screen.hasShiftDown()){
-                p_77624_3_.add(new TranslationTextComponent("tooltip.galvorite.shimmer_helm"));
-            } else p_77624_3_.add(new TranslationTextComponent("tooltip.galvorite.hold_shift"));
+                tooltip.add(new TranslationTextComponent("tooltip.galvorite.shimmer_helm"));
+            } else tooltip.add(new TranslationTextComponent("tooltip.galvorite.hold_shift"));
         }
-        super.appendHoverText(p_77624_1_, p_77624_2_, p_77624_3_, p_77624_4_);
+        super.addInformation(stack, worldIn, tooltip, flagIn);
     }
 
     @Override
     public void onArmorTick(ItemStack stack, World world, PlayerEntity player) {
         super.onArmorTick(stack, world, player);
-        if (!world.isClientSide()){
-            player.removeEffect(Effects.BLINDNESS);
-            player.removeEffect(Effects.MOVEMENT_SLOWDOWN);
-            player.removeEffect(Effects.LEVITATION);
-            player.removeEffect(Effects.DIG_SLOWDOWN);
-            player.removeEffect(Effects.CONFUSION);
-            player.removeEffect(Effects.HUNGER);
-            player.removeEffect(Effects.WEAKNESS);
-            player.removeEffect(Effects.POISON);
-            player.removeEffect(Effects.WITHER);
-            player.removeEffect(Effects.UNLUCK);
+        if (!world.isRemote()){
+            player.removePotionEffect(Effects.BLINDNESS);
+            player.removePotionEffect(Effects.SLOWNESS);
+            player.removePotionEffect(Effects.LEVITATION);
+            player.removePotionEffect(Effects.MINING_FATIGUE);
+            player.removePotionEffect(Effects.NAUSEA);
+            player.removePotionEffect(Effects.HUNGER);
+            player.removePotionEffect(Effects.WEAKNESS);
+            player.removePotionEffect(Effects.POISON);
+            player.removePotionEffect(Effects.WITHER);
+            player.removePotionEffect(Effects.UNLUCK);
 
-            if(player.getItemBySlot(EquipmentSlotType.HEAD).getItem()==(modItems.SHIMMER_HELM_SPEED.get())) {
-                player.addEffect(new EffectInstance(Effects.MOVEMENT_SPEED,4,0));
+            if(player.getItemStackFromSlot(EquipmentSlotType.HEAD).getItem()==(modItems.SHIMMER_HELM_SPEED.get())) {
+                player.addPotionEffect(new EffectInstance(Effects.SPEED,4,0));
             } else
-            if(player.getItemBySlot(EquipmentSlotType.HEAD).getItem()==(modItems.SHIMMER_HELM_STRENGTH.get())) {
-                player.addEffect(new EffectInstance(Effects.DAMAGE_BOOST,4,0));
+            if(player.getItemStackFromSlot(EquipmentSlotType.HEAD).getItem()==(modItems.SHIMMER_HELM_STRENGTH.get())) {
+                player.addPotionEffect(new EffectInstance(Effects.STRENGTH,4,0));
             } else
-            if(player.getItemBySlot(EquipmentSlotType.HEAD).getItem()==(modItems.SHIMMER_HELM_HASTE.get())) {
-                player.addEffect(new EffectInstance(Effects.DIG_SPEED,4,0));
+            if(player.getItemStackFromSlot(EquipmentSlotType.HEAD).getItem()==(modItems.SHIMMER_HELM_HASTE.get())) {
+                player.addPotionEffect(new EffectInstance(Effects.HASTE,4,0));
             } else
-            if(player.getItemBySlot(EquipmentSlotType.HEAD).getItem()==(modItems.SHIMMER_HELM_JUMP_BOOST.get())) {
-                player.addEffect(new EffectInstance(Effects.JUMP,4,0));
+            if(player.getItemStackFromSlot(EquipmentSlotType.HEAD).getItem()==(modItems.SHIMMER_HELM_JUMP_BOOST.get())) {
+                player.addPotionEffect(new EffectInstance(Effects.JUMP_BOOST,4,0));
             } else
-            if(player.getItemBySlot(EquipmentSlotType.HEAD).getItem()==(modItems.SHIMMER_HELM_RESISTANCE.get())) {
-                player.addEffect(new EffectInstance(Effects.DAMAGE_RESISTANCE,4,0));
+            if(player.getItemStackFromSlot(EquipmentSlotType.HEAD).getItem()==(modItems.SHIMMER_HELM_RESISTANCE.get())) {
+                player.addPotionEffect(new EffectInstance(Effects.RESISTANCE,4,0));
             } else
-            if(player.getItemBySlot(EquipmentSlotType.HEAD).getItem()==(modItems.SHIMMER_HELM_REGENERATION.get())) {
-                player.addEffect(new EffectInstance(Effects.REGENERATION,4,0));
+            if(player.getItemStackFromSlot(EquipmentSlotType.HEAD).getItem()==(modItems.SHIMMER_HELM_REGENERATION.get())) {
+                player.addPotionEffect(new EffectInstance(Effects.REGENERATION,4,0));
             }
         }
     }

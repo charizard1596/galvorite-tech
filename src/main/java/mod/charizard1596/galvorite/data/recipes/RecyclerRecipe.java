@@ -32,16 +32,16 @@ public class RecyclerRecipe implements IRecyclerRecipe{
 
     @Override
     public boolean matches(IInventory pInv, World pLevel) {
-       return recipeItems.get(0).test(pInv.getItem(0));
+       return recipeItems.get(0).test(pInv.getStackInSlot(0));
     }
 
     @Override
-    public ItemStack assemble(IInventory pInv) {
+    public ItemStack getCraftingResult(IInventory pInv) {
         return output;
     }
 
     @Override
-    public ItemStack getResultItem() {
+    public ItemStack getRecipeOutput() {
         return output.copy();
     }
 
@@ -69,14 +69,14 @@ public class RecyclerRecipe implements IRecyclerRecipe{
             implements IRecipeSerializer<RecyclerRecipe> {
 
         @Override
-        public RecyclerRecipe fromJson(ResourceLocation recipeId, JsonObject json) {
-            ItemStack output = ShapedRecipe.itemFromJson(JSONUtils.getAsJsonObject(json, "output"));
+        public RecyclerRecipe read(ResourceLocation recipeId, JsonObject json) {
+            ItemStack output = ShapedRecipe.deserializeItem(JSONUtils.getJsonObject(json, "output"));
 
-            JsonArray ingredients = JSONUtils.getAsJsonArray(json, "ingredients");
+            JsonArray ingredients = JSONUtils.getJsonArray(json, "ingredients");
             NonNullList<Ingredient> inputs = NonNullList.withSize(1, Ingredient.EMPTY);
 
             for (int i = 0; i < inputs.size(); i++) {
-                inputs.set(i, Ingredient.fromJson(ingredients.get(i)));
+                inputs.set(i, Ingredient.deserialize(ingredients.get(i)));
             }
 
             return new RecyclerRecipe(recipeId, output,
@@ -84,24 +84,24 @@ public class RecyclerRecipe implements IRecyclerRecipe{
 
         @Nullable
         @Override
-        public RecyclerRecipe fromNetwork(ResourceLocation recipeId, PacketBuffer buffer) {
+        public RecyclerRecipe read(ResourceLocation recipeId, PacketBuffer buffer) {
             NonNullList<Ingredient> inputs = NonNullList.withSize(1, Ingredient.EMPTY);
 
             for (int i = 0; i < inputs.size(); i++) {
-                inputs.set(i, Ingredient.fromNetwork(buffer));
+                inputs.set(i, Ingredient.read(buffer));
             }
 
-            ItemStack output = buffer.readItem();
+            ItemStack output = buffer.readItemStack();
             return new RecyclerRecipe(recipeId, output,
                     inputs);        }
 
         @Override
-        public void toNetwork(PacketBuffer buffer, RecyclerRecipe recipe) {
+        public void write(PacketBuffer buffer, RecyclerRecipe recipe) {
             buffer.writeInt(recipe.getIngredients().size());
             for (Ingredient ing : recipe.getIngredients()) {
-                ing.toNetwork(buffer);
+                ing.write(buffer);
             }
-            buffer.writeItemStack(recipe.getResultItem(), false);
+            buffer.writeItemStack(recipe.getRecipeOutput(), false);
         }
     }
 }

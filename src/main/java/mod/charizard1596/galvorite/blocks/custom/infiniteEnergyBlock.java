@@ -11,9 +11,11 @@ import net.minecraft.world.World;
 
 import javax.annotation.Nullable;
 
+import net.minecraft.block.AbstractBlock.Properties;
+
 public class infiniteEnergyBlock extends Block {
-    public infiniteEnergyBlock(Properties p_i48440_1_) {
-        super(p_i48440_1_);
+    public infiniteEnergyBlock(Properties properties) {
+        super(properties);
     }
     @Override
     public boolean hasTileEntity(BlockState state) {

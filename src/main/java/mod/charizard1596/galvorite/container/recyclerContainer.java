@@ -23,7 +23,7 @@ public class recyclerContainer extends Container {
         public recyclerContainer(int windowId, World world, BlockPos pos,
                                  PlayerInventory playerInventory, PlayerEntity player) {
             super(modContainers.RECYCLER_CONTAINER.get(), windowId);
-            this.tileEntity = world.getBlockEntity(pos);
+            this.tileEntity = world.getTileEntity(pos);
             playerEntity = player;
             this.playerInventory = new InvWrapper(playerInventory);
             layoutPlayerInventorySlots(8, 86);
@@ -37,8 +37,8 @@ public class recyclerContainer extends Container {
         }
 
         @Override
-        public boolean stillValid(PlayerEntity playerIn) {
-            return stillValid(IWorldPosCallable.create(tileEntity.getLevel(), tileEntity.getBlockPos()),
+        public boolean canInteractWith(PlayerEntity playerIn) {
+            return isWithinUsableDistance(IWorldPosCallable.of(tileEntity.getWorld(), tileEntity.getPos()),
                     playerIn, modBlocks.RECYCLER.get());
         }
 
@@ -88,22 +88,22 @@ public class recyclerContainer extends Container {
         private static final int TE_INVENTORY_SLOT_COUNT = 2;  // must match TileEntityInventoryBasic.NUMBER_OF_SLOTS
 
         @Override
-        public ItemStack quickMoveStack(PlayerEntity playerIn, int index) {
-            Slot sourceSlot = slots.get(index);
-            if (sourceSlot == null || !sourceSlot.hasItem()) return ItemStack.EMPTY;  //EMPTY_ITEM
-            ItemStack sourceStack = sourceSlot.getItem();
+        public ItemStack transferStackInSlot(PlayerEntity playerIn, int index) {
+            Slot sourceSlot = inventorySlots.get(index);
+            if (sourceSlot == null || !sourceSlot.getHasStack()) return ItemStack.EMPTY;  //EMPTY_ITEM
+            ItemStack sourceStack = sourceSlot.getStack();
             ItemStack copyOfSourceStack = sourceStack.copy();
 
             // Check if the slot clicked is one of the vanilla container slots
             if (index < VANILLA_FIRST_SLOT_INDEX + VANILLA_SLOT_COUNT) {
                 // This is a vanilla container slot so merge the stack into the tile inventory
-                if (!moveItemStackTo(sourceStack, TE_INVENTORY_FIRST_SLOT_INDEX, TE_INVENTORY_FIRST_SLOT_INDEX
+                if (!mergeItemStack(sourceStack, TE_INVENTORY_FIRST_SLOT_INDEX, TE_INVENTORY_FIRST_SLOT_INDEX
                         + TE_INVENTORY_SLOT_COUNT, false)) {
                     return ItemStack.EMPTY;  // EMPTY_ITEM
                 }
             } else if (index < TE_INVENTORY_FIRST_SLOT_INDEX + TE_INVENTORY_SLOT_COUNT) {
                 // This is a TE slot so merge the stack into the players inventory
-                if (!moveItemStackTo(sourceStack, VANILLA_FIRST_SLOT_INDEX, VANILLA_FIRST_SLOT_INDEX + VANILLA_SLOT_COUNT, false)) {
+                if (!mergeItemStack(sourceStack, VANILLA_FIRST_SLOT_INDEX, VANILLA_FIRST_SLOT_INDEX + VANILLA_SLOT_COUNT, false)) {
                     return ItemStack.EMPTY;
                 }
             } else {
@@ -112,9 +112,9 @@ public class recyclerContainer extends Container {
             }
             // If stack size == 0 (the entire stack was moved) set slot contents to null
             if (sourceStack.getCount() == 0) {
-                sourceSlot.set(ItemStack.EMPTY);
+                sourceSlot.putStack(ItemStack.EMPTY);
             } else {
-                sourceSlot.setChanged();
+                sourceSlot.onSlotChanged();
             }
             sourceSlot.onTake(playerEntity, sourceStack);
             return copyOfSourceStack;
