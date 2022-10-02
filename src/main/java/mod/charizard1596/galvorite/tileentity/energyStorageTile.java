@@ -20,12 +20,12 @@ public class energyStorageTile extends energyTile {
     }
 
     @Override
-    public void read(BlockState state, CompoundNBT nbt) {
-        super.read(state, nbt);
+    public void load(BlockState state, CompoundNBT nbt) {
+        super.load(state, nbt);
     }
 
     @Override
-    public CompoundNBT write(CompoundNBT compound) {
-        return super.write(compound);
+    public CompoundNBT save(CompoundNBT compound) {
+        return super.save(compound);
     }
 }

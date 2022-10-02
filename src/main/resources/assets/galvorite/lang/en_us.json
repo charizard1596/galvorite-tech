@@ -39,5 +39,6 @@
   "enchantment.galvorite.spell_returning" : "\u00a72Spell of Returning\u00a7r",
   "enchantment.galvorite.spell_warping" : "\u00A75Spell of Warping\u00a7r",
   "screen.galvorite.recycler": "Recycler",
-  "tooltip.galvorite.jetpack": "Press Jump to fly!"
+  "tooltip.galvorite.jetpack": "Press Jump to fly!",
+  "enchantment.galvorite.spell_remaining" : "\u00A7eSpell of Remaining\u00a7r"
 }

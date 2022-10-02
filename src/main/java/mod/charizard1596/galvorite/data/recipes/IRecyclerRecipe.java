@@ -16,12 +16,12 @@ public interface IRecyclerRecipe extends IRecipe<IInventory> {
     }
 
     @Override
-    default boolean canFit(int width, int height) {
+    default boolean canCraftInDimensions(int width, int height) {
         return true;
     }
 
     @Override
-    default boolean isDynamic(){
+    default boolean isSpecial(){
         return true;
     }
 }

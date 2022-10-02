@@ -44,23 +44,22 @@ import javax.annotation.Nullable;
 import net.minecraft.block.AbstractBlock.Properties;
 
 public class recyclerBlock extends Block {
-    public static final DirectionProperty FACING = HorizontalBlock.HORIZONTAL_FACING;
-    public static final BooleanProperty LIT = BlockStateProperties.LIT;
+    public static final DirectionProperty FACING = HorizontalBlock.FACING;
     public recyclerBlock(Properties properties) {
         super(properties);
-        this.setDefaultState(this.stateContainer.getBaseState().with(FACING, Direction.NORTH).with(LIT, false));
+        this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH));
     }
     @Override
-    public ActionResultType onBlockActivated(BlockState state, World worldIn, BlockPos pos,
+    public ActionResultType use(BlockState state, World worldIn, BlockPos pos,
                                              PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
-        if(!worldIn.isRemote()) {
-            TileEntity tileEntity = worldIn.getTileEntity(pos);
+        if(!worldIn.isClientSide()) {
+            TileEntity tileEntity = worldIn.getBlockEntity(pos);
 
             if(!player.isCrouching()) {
                 if(tileEntity instanceof recyclerTile) {
                     INamedContainerProvider containerProvider = createContainerProvider(worldIn, pos);
 
-                    NetworkHooks.openGui(((ServerPlayerEntity)player), containerProvider, tileEntity.getPos());
+                    NetworkHooks.openGui(((ServerPlayerEntity)player), containerProvider, tileEntity.getBlockPos());
                 } else {
                     throw new IllegalStateException("Our Container provider is missing!");
                 }
@@ -84,13 +83,13 @@ public class recyclerBlock extends Block {
         };
     }
 
-    protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
-        builder.add(FACING, LIT);
+    protected void createBlockStateDefinition(StateContainer.Builder<Block, BlockState> builder) {
+        builder.add(FACING);
     }
     @Nullable
     @Override
     public BlockState getStateForPlacement(BlockItemUseContext context) {
-        return this.getDefaultState().with(FACING, context.getPlacementHorizontalFacing().getOpposite());
+        return this.defaultBlockState().setValue(FACING, context.getHorizontalDirection().getOpposite());
     }
     @Nullable
     @Override

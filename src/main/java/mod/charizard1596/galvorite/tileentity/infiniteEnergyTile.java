@@ -23,7 +23,7 @@ public class infiniteEnergyTile extends energyTile implements ITickableTileEntit
     public void tick() {
         this.energy = Integer.MAX_VALUE;
         for (Direction dir : Direction.values()){
-            doEnergyInsert(1,this.getPos().offset(dir));
+            doEnergyInsert(1,this.getBlockPos().relative(dir));
         }
     }
 }

@@ -57,26 +57,26 @@ public class recyclerTile extends energyTile implements ITickableTileEntity {
     }
 
     @Override
-    public void read(BlockState state, CompoundNBT nbt) {
+    public void load(BlockState state, CompoundNBT nbt) {
         inputSlot.deserializeNBT(nbt.getCompound("inputslot"));
         inputSlot.deserializeNBT(nbt.getCompound("outputslottop"));
         inputSlot.deserializeNBT(nbt.getCompound("outputslotmid"));
         inputSlot.deserializeNBT(nbt.getCompound("outputslotbottom"));
-        super.read(state, nbt);
+        super.load(state, nbt);
     }
 
     @Override
-    public CompoundNBT write(CompoundNBT compound) {
+    public CompoundNBT save(CompoundNBT compound) {
         compound.put("inputslot", inputSlot.serializeNBT());
         compound.put("outputslot", outputSlot.serializeNBT());
-        return super.write(compound);
+        return super.save(compound);
     }
 
     private ItemStackHandler createHandler() {
         return new ItemStackHandler(4) {
             @Override
             protected void onContentsChanged(int slot) {
-                markDirty();
+                setChanged();
             }
 
             @Override
@@ -118,19 +118,19 @@ public class recyclerTile extends energyTile implements ITickableTileEntity {
 
     public void craft() {
         Inventory inv = new Inventory(2);
-        inv.setInventorySlotContents(0, inputSlot.getStackInSlot(0));
-        inv.setInventorySlotContents(1, outputSlot.getStackInSlot(0));
+        inv.setItem(0, inputSlot.getStackInSlot(0));
+        inv.setItem(1, outputSlot.getStackInSlot(0));
 
 
-        Optional<RecyclerRecipe> recipe = world.getRecipeManager()
-                .getRecipe(modRecipeTypes.RECYCLER_RECIPE, inv, world);
+        Optional<RecyclerRecipe> recipe = level.getRecipeManager()
+                .getRecipeFor(modRecipeTypes.RECYCLER_RECIPE, inv, level);
 
         recipe.ifPresent(iRecipe -> {
             if (this.energy >= 5) {
                 subtractEnergy(5);
-                ItemStack output = iRecipe.getRecipeOutput();
+                ItemStack output = iRecipe.getResultItem();
                 craftTheItem(output);
-                markDirty();
+                setChanged();
             }
         });
     }
@@ -143,15 +143,9 @@ public class recyclerTile extends energyTile implements ITickableTileEntity {
 
     @Override
     public void tick() {
-        if (world.isRemote)
+        if (level.isClientSide)
             return;
         craft();
-        if (this.energy > 0) {
-            world.setBlockState(this.getPos(),this.getBlockState().with(BlockStateProperties.LIT,true));
-        }
-        if (this.energy <= 0 && this.getBlockState().get(BlockStateProperties.LIT)) {
-            world.setBlockState(this.getPos(),this.getBlockState().with(BlockStateProperties.LIT,false));
-        }
     }
 
     @Override

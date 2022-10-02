@@ -20,14 +20,14 @@ public class wrenchItem extends Item {
     }
 
     @Override
-    public ActionResultType onItemUse(ItemUseContext context) {
-        if (!context.getWorld().isRemote())
+    public ActionResultType useOn(ItemUseContext context) {
+        if (!context.getLevel().isClientSide())
         {
-            if (context.getWorld().getBlockState(context.getPos()).getBlock() == modBlocks.WIRE.get())
+            if (context.getLevel().getBlockState(context.getClickedPos()).getBlock() == modBlocks.WIRE.get())
             {
                 if (context.getPlayer().isCrouching())
                 {
-                    context.getWorld().setBlockState(context.getPos(), context.getWorld().getBlockState(context.getPos()).rotate(context.getWorld(),context.getPos(),Rotation.CLOCKWISE_90));
+                    context.getLevel().setBlockAndUpdate(context.getClickedPos(), context.getLevel().getBlockState(context.getClickedPos()).rotate(context.getLevel(),context.getClickedPos(),Rotation.CLOCKWISE_90));
                 }
             }
         }

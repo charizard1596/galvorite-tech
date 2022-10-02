@@ -37,15 +37,15 @@ public class energyStorageBlock extends Block {
         return new energyStorageTile();
     }
     private energyStorageTile getTE(World world, BlockPos pos) {
-        return (energyStorageTile) world.getTileEntity(pos);
+        return (energyStorageTile) world.getBlockEntity(pos);
     }
     @Override
-    public ActionResultType onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
-        if (!worldIn.isRemote){
+    public ActionResultType use(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
+        if (!worldIn.isClientSide){
             int energy = getTE(worldIn,pos).getEnergy();
             StringTextComponent message = new StringTextComponent(Integer.toString(energy));
-            message.getStyle().applyFormatting(TextFormatting.GREEN);
-            player.sendMessage(message,player.getUniqueID());
+            message.getStyle().applyFormat(TextFormatting.GREEN);
+            player.sendMessage(message,player.getUUID());
         }
         return ActionResultType.SUCCESS;
     }

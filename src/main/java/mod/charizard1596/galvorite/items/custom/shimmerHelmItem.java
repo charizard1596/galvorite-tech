@@ -69,7 +69,7 @@ public class shimmerHelmItem extends ArmorItem implements IArmorVanishable {
     }
 
     @Override
-    public void addInformation(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
+    public void appendHoverText(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
         if(stack.getItem()==(modItems.SHIMMER_HELM_SPEED.get())) {
             if (Screen.hasShiftDown()){
                 tooltip.add(new TranslationTextComponent("tooltip.galvorite.shimmer_helm_speed"));
@@ -104,41 +104,41 @@ public class shimmerHelmItem extends ArmorItem implements IArmorVanishable {
                 tooltip.add(new TranslationTextComponent("tooltip.galvorite.shimmer_helm"));
             } else tooltip.add(new TranslationTextComponent("tooltip.galvorite.hold_shift"));
         }
-        super.addInformation(stack, worldIn, tooltip, flagIn);
+        super.appendHoverText(stack, worldIn, tooltip, flagIn);
     }
 
     @Override
     public void onArmorTick(ItemStack stack, World world, PlayerEntity player) {
         super.onArmorTick(stack, world, player);
-        if (!world.isRemote()){
-            player.removePotionEffect(Effects.BLINDNESS);
-            player.removePotionEffect(Effects.SLOWNESS);
-            player.removePotionEffect(Effects.LEVITATION);
-            player.removePotionEffect(Effects.MINING_FATIGUE);
-            player.removePotionEffect(Effects.NAUSEA);
-            player.removePotionEffect(Effects.HUNGER);
-            player.removePotionEffect(Effects.WEAKNESS);
-            player.removePotionEffect(Effects.POISON);
-            player.removePotionEffect(Effects.WITHER);
-            player.removePotionEffect(Effects.UNLUCK);
+        if (!world.isClientSide()){
+            player.removeEffect(Effects.BLINDNESS);
+            player.removeEffect(Effects.MOVEMENT_SLOWDOWN);
+            player.removeEffect(Effects.LEVITATION);
+            player.removeEffect(Effects.DIG_SLOWDOWN);
+            player.removeEffect(Effects.CONFUSION);
+            player.removeEffect(Effects.HUNGER);
+            player.removeEffect(Effects.WEAKNESS);
+            player.removeEffect(Effects.POISON);
+            player.removeEffect(Effects.WITHER);
+            player.removeEffect(Effects.UNLUCK);
 
-            if(player.getItemStackFromSlot(EquipmentSlotType.HEAD).getItem()==(modItems.SHIMMER_HELM_SPEED.get())) {
-                player.addPotionEffect(new EffectInstance(Effects.SPEED,4,0));
+            if(player.getItemBySlot(EquipmentSlotType.HEAD).getItem()==(modItems.SHIMMER_HELM_SPEED.get())) {
+                player.addEffect(new EffectInstance(Effects.MOVEMENT_SPEED,4,0));
             } else
-            if(player.getItemStackFromSlot(EquipmentSlotType.HEAD).getItem()==(modItems.SHIMMER_HELM_STRENGTH.get())) {
-                player.addPotionEffect(new EffectInstance(Effects.STRENGTH,4,0));
+            if(player.getItemBySlot(EquipmentSlotType.HEAD).getItem()==(modItems.SHIMMER_HELM_STRENGTH.get())) {
+                player.addEffect(new EffectInstance(Effects.DAMAGE_BOOST,4,0));
             } else
-            if(player.getItemStackFromSlot(EquipmentSlotType.HEAD).getItem()==(modItems.SHIMMER_HELM_HASTE.get())) {
-                player.addPotionEffect(new EffectInstance(Effects.HASTE,4,0));
+            if(player.getItemBySlot(EquipmentSlotType.HEAD).getItem()==(modItems.SHIMMER_HELM_HASTE.get())) {
+                player.addEffect(new EffectInstance(Effects.DIG_SPEED,4,0));
             } else
-            if(player.getItemStackFromSlot(EquipmentSlotType.HEAD).getItem()==(modItems.SHIMMER_HELM_JUMP_BOOST.get())) {
-                player.addPotionEffect(new EffectInstance(Effects.JUMP_BOOST,4,0));
+            if(player.getItemBySlot(EquipmentSlotType.HEAD).getItem()==(modItems.SHIMMER_HELM_JUMP_BOOST.get())) {
+                player.addEffect(new EffectInstance(Effects.JUMP,4,0));
             } else
-            if(player.getItemStackFromSlot(EquipmentSlotType.HEAD).getItem()==(modItems.SHIMMER_HELM_RESISTANCE.get())) {
-                player.addPotionEffect(new EffectInstance(Effects.RESISTANCE,4,0));
+            if(player.getItemBySlot(EquipmentSlotType.HEAD).getItem()==(modItems.SHIMMER_HELM_RESISTANCE.get())) {
+                player.addEffect(new EffectInstance(Effects.DAMAGE_RESISTANCE,4,0));
             } else
-            if(player.getItemStackFromSlot(EquipmentSlotType.HEAD).getItem()==(modItems.SHIMMER_HELM_REGENERATION.get())) {
-                player.addPotionEffect(new EffectInstance(Effects.REGENERATION,4,0));
+            if(player.getItemBySlot(EquipmentSlotType.HEAD).getItem()==(modItems.SHIMMER_HELM_REGENERATION.get())) {
+                player.addEffect(new EffectInstance(Effects.REGENERATION,4,0));
             }
         }
     }

@@ -19,7 +19,7 @@ public class modContainers {
             = CONTAINERS.register("recycler_container",
             () -> IForgeContainerType.create(((windowId, inv, data) -> {
                 BlockPos pos = data.readBlockPos();
-                World world = inv.player.getEntityWorld();
+                World world = inv.player.getCommandSenderWorld();
                 return new recyclerContainer(windowId, world, pos, inv, inv.player);
             })));
 

@@ -33,20 +33,20 @@ public class bunkerStructure extends Structure<NoFeatureConfig> {
     }
 
     @Override
-    public GenerationStage.Decoration getDecorationStage() {
+    public GenerationStage.Decoration step() {
         return GenerationStage.Decoration.SURFACE_STRUCTURES;
     }
 
     @Override
-    protected boolean func_230363_a_(ChunkGenerator chunkGenerator, BiomeProvider biomeSource,
+    protected boolean isFeatureChunk(ChunkGenerator chunkGenerator, BiomeProvider biomeSource,
                                      long seed, SharedSeedRandom chunkRandom, int chunkX, int chunkZ,
                                      Biome biome, ChunkPos chunkPos, NoFeatureConfig featureConfig) {
         BlockPos centerOfChunk = new BlockPos((chunkX << 4) + 7, 0, (chunkZ << 4) + 7);
-        int landHeight = chunkGenerator.getHeight(centerOfChunk.getX(), centerOfChunk.getZ(),
+        int landHeight = chunkGenerator.getBaseHeight(centerOfChunk.getX(), centerOfChunk.getZ(),
                 Heightmap.Type.WORLD_SURFACE_WG);
 
-        IBlockReader columnOfBlocks = chunkGenerator.func_230348_a_(centerOfChunk.getX(), centerOfChunk.getZ());
-        BlockState topBlock = columnOfBlocks.getBlockState(centerOfChunk.up(landHeight));
+        IBlockReader columnOfBlocks = chunkGenerator.getBaseColumn(centerOfChunk.getX(), centerOfChunk.getZ());
+        BlockState topBlock = columnOfBlocks.getBlockState(centerOfChunk.above(landHeight));
 
         return topBlock.getFluidState().isEmpty();
     }
@@ -63,7 +63,7 @@ public class bunkerStructure extends Structure<NoFeatureConfig> {
         }
 
         @Override // generatePieces
-        public void func_230364_a_(DynamicRegistries dynamicRegistryManager, ChunkGenerator chunkGenerator,
+        public void generatePieces(DynamicRegistries dynamicRegistryManager, ChunkGenerator chunkGenerator,
                                    TemplateManager templateManagerIn, int chunkX, int chunkZ, Biome biomeIn,
                                    NoFeatureConfig config) {
             // Turns the chunk coordinates into actual coordinates we can use. (Gets center of that chunk)
@@ -72,16 +72,16 @@ public class bunkerStructure extends Structure<NoFeatureConfig> {
             BlockPos blockpos = new BlockPos(x, 0, z);
 
             //addpieces()
-            JigsawManager.func_242837_a(dynamicRegistryManager,
-                    new VillageConfig(() -> dynamicRegistryManager.getRegistry(Registry.JIGSAW_POOL_KEY)
-                            .getOrDefault(new ResourceLocation(galvorite.MOD_ID, "bunker/start_pool")),
+            JigsawManager.addPieces(dynamicRegistryManager,
+                    new VillageConfig(() -> dynamicRegistryManager.registryOrThrow(Registry.TEMPLATE_POOL_REGISTRY)
+                            .get(new ResourceLocation(galvorite.MOD_ID, "bunker/start_pool")),
                             10), AbstractVillagePiece::new, chunkGenerator, templateManagerIn,
-                    blockpos, this.components, this.rand,false,true);
+                    blockpos, this.pieces, this.random,false,true);
 
-            this.components.forEach(piece -> piece.offset(0, 1, 0));
-            this.components.forEach(piece -> piece.getBoundingBox().minY -= 1);
+            this.pieces.forEach(piece -> piece.move(0, 1, 0));
+            this.pieces.forEach(piece -> piece.getBoundingBox().y0 -= 1);
 
-            this.recalculateStructureSize();
+            this.calculateBoundingBox();
 
 
         }

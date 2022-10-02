@@ -10,8 +10,8 @@ import java.util.Arrays;
 public class modItemGroup {
     public static final ItemGroup galvoriteGroup = (new ItemGroup("galvoriteGroup") {
         @Override
-        public ItemStack createIcon() {
+        public ItemStack makeIcon() {
             return new ItemStack(modItems.GALVORITE_INGOT.get());
         }
-    }).setRelevantEnchantmentTypes(modEnchantments.WARPING_COMPATIBLE,modEnchantments.RETURNING_COMPATIBLE);
+    }).setEnchantmentCategories(modEnchantments.WARPING_COMPATIBLE,modEnchantments.RETURNING_COMPATIBLE);
 }

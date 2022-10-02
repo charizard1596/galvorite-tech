@@ -35,8 +35,8 @@ public class jetpackMessage {
         NetworkEvent.Context context = contextSupplier.get();
         context.enqueueWork(() -> {
             ServerPlayerEntity player = context.getSender();
-            if (player.getItemStackFromSlot(EquipmentSlotType.CHEST).getItem()==modItems.JETPACK.get()){
-                ((jetpackItem)player.getItemStackFromSlot(EquipmentSlotType.CHEST).getItem()).keyDown = message.fly;
+            if (player.getItemBySlot(EquipmentSlotType.CHEST).getItem()==modItems.JETPACK.get()){
+                ((jetpackItem)player.getItemBySlot(EquipmentSlotType.CHEST).getItem()).keyDown = message.fly;
             }
         });
         context.setPacketHandled(true);

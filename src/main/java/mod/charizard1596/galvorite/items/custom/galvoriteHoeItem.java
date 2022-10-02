@@ -17,7 +17,7 @@ public class galvoriteHoeItem extends HoeItem {
     protected static final UUID ATTACK_REACH_MODIFIER = UUID.fromString("6d7cd010-d2e5-4b0e-902a-f08a469fd77b");
     public galvoriteHoeItem(IItemTier tier, int attackDamageIn, float attackSpeedIn, Properties builder) {
         super(tier, attackDamageIn, attackSpeedIn, builder);
-        this.defaultModifiers=super.getAttributeModifiers(EquipmentSlotType.MAINHAND);
+        this.defaultModifiers=super.getDefaultAttributeModifiers(EquipmentSlotType.MAINHAND);
     }
 
     @Override

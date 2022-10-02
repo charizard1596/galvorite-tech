@@ -20,7 +20,7 @@ public class galvoriteShovelItem extends ShovelItem {
     protected static final UUID ATTACK_REACH_MODIFIER = UUID.fromString("bb48d213-2c27-44b9-b406-635ca404ba07");
     public galvoriteShovelItem(IItemTier tier, float attackDamageIn, float attackSpeedIn, Properties builder) {
         super(tier, attackDamageIn, attackSpeedIn, builder);
-        this.defaultModifiers=super.getAttributeModifiers(EquipmentSlotType.MAINHAND);
+        this.defaultModifiers=super.getDefaultAttributeModifiers(EquipmentSlotType.MAINHAND);
     }
 
     @Override

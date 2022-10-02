@@ -28,23 +28,23 @@ public class wireTile extends energyTile implements ITickableTileEntity {
     }
 
     @Override
-    public void read(BlockState state, CompoundNBT nbt) {
-        super.read(state, nbt);
+    public void load(BlockState state, CompoundNBT nbt) {
+        super.load(state, nbt);
     }
 
     @Override
-    public CompoundNBT write(CompoundNBT compound) {
-        return super.write(compound);
+    public CompoundNBT save(CompoundNBT compound) {
+        return super.save(compound);
     }
 
     @Override
     public void tick() {
         if (this.energy > 0){
-            doEnergyInsert(1,this.getPos().offset(this.getBlockState().get(FACING)));
+            doEnergyInsert(1,this.getBlockPos().relative(this.getBlockState().getValue(FACING)));
         }
         for (Direction dir : Direction.values()){
-            if (dir != this.getBlockState().get(FACING)) {
-                doEnergyExtract(1, this.getPos().offset(dir));
+            if (dir != this.getBlockState().getValue(FACING)) {
+                doEnergyExtract(1, this.getBlockPos().relative(dir));
             }
         }
     }

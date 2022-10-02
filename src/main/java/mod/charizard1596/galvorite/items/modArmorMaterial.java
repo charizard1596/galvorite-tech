@@ -14,8 +14,8 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import java.util.function.Supplier;
 
 public enum modArmorMaterial implements IArmorMaterial {
-    GALVORITE("galvorite", 50, new int[] { 3 , 6 , 8 , 3}, 20, SoundEvents.ITEM_ARMOR_EQUIP_NETHERITE, 4.0F, 0.1F, () -> {return Ingredient.fromItems(modItems.GALVORITE_INGOT.get());}),
-    SHIMMER("shimmer", 0, new int[] { 0 , 0 , 0 , 0}, 20, SoundEvents.BLOCK_BEACON_ACTIVATE, 0.0F, 0.0F, () -> {return Ingredient.fromItems(Items.NETHER_STAR);});
+    GALVORITE("galvorite", 50, new int[] { 3 , 6 , 8 , 3}, 20, SoundEvents.ARMOR_EQUIP_NETHERITE, 4.0F, 0.1F, () -> {return Ingredient.of(modItems.GALVORITE_INGOT.get());}),
+    SHIMMER("shimmer", 0, new int[] { 0 , 0 , 0 , 0}, 20, SoundEvents.BEACON_ACTIVATE, 0.0F, 0.0F, () -> {return Ingredient.of(Items.NETHER_STAR);});
 
     private static final int[] HEALTH_PER_SLOT = new int[]{13, 15, 16, 11};
     private final String name;
@@ -37,24 +37,24 @@ public enum modArmorMaterial implements IArmorMaterial {
         this.knockbackResistance = knockbackResistance;
         this.repairIngredient = new LazyValue<>(repairMaterial);
     }
-    public int getDurability(EquipmentSlotType slotIn) {
+    public int getDurabilityForSlot(EquipmentSlotType slotIn) {
         return HEALTH_PER_SLOT[slotIn.getIndex()] * this.durabilityMultiplier;
     }
 
-    public int getDamageReductionAmount(EquipmentSlotType slotIn) {
+    public int getDefenseForSlot(EquipmentSlotType slotIn) {
         return this.slotProtections[slotIn.getIndex()];
     }
 
-    public int getEnchantability() {
+    public int getEnchantmentValue() {
         return this.enchantmentValue;
     }
 
-    public SoundEvent getSoundEvent() {
+    public SoundEvent getEquipSound() {
         return this.sound;
     }
 
-    public Ingredient getRepairMaterial() {
-        return this.repairIngredient.getValue();
+    public Ingredient getRepairIngredient() {
+        return this.repairIngredient.get();
     }
 
     @OnlyIn(Dist.CLIENT)

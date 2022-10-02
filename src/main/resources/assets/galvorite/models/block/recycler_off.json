@@ -1,9 +1,0 @@
-{
-  "parent": "minecraft:block/orientable",
-  "textures": {
-    "top": "galvorite:block/recycler_top_bottom",
-    "bottom" : "galvorite:block/recycler_top_bottom",
-    "front": "galvorite:block/recycler_front_off",
-    "side": "galvorite:block/recycler_side"
-  }
-}

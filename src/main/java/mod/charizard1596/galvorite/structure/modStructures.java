@@ -43,7 +43,7 @@ public class modStructures {
     public static <F extends Structure<?>> void setupMapSpacingAndLand(F structure, StructureSeparationSettings structureSeparationSettings,
                                                                        boolean transformSurroundingLand) {
         //add our structures into the map in Structure class
-        Structure.NAME_STRUCTURE_BIMAP.put(structure.getRegistryName().toString(), structure);
+        Structure.STRUCTURES_REGISTRY.put(structure.getRegistryName().toString(), structure);
 
         /*
          * Whether surrounding land will be modified automatically to conform to the bottom of the structure.
@@ -52,8 +52,8 @@ public class modStructures {
          *
          */
         if (transformSurroundingLand) {
-            Structure.field_236384_t_ = ImmutableList.<Structure<?>>builder()
-                    .addAll(Structure.field_236384_t_)
+            Structure.NOISE_AFFECTING_FEATURES = ImmutableList.<Structure<?>>builder()
+                    .addAll(Structure.NOISE_AFFECTING_FEATURES)
                     .add(structure)
                     .build();
         }
@@ -71,9 +71,9 @@ public class modStructures {
          *
          * DEFAULTS requires AccessTransformer  (See resources/META-INF/accesstransformer.cfg)
          */
-        DimensionStructuresSettings.field_236191_b_ =
+        DimensionStructuresSettings.DEFAULTS =
                 ImmutableMap.<Structure<?>, StructureSeparationSettings>builder()
-                        .putAll(DimensionStructuresSettings.field_236191_b_)
+                        .putAll(DimensionStructuresSettings.DEFAULTS)
                         .put(structure, structureSeparationSettings)
                         .build();
 
@@ -87,9 +87,9 @@ public class modStructures {
          * So yeah, don't do DimensionSettings.BUILTIN_OVERWORLD. Use the NOISE_GENERATOR_SETTINGS loop
          * below instead if you must.
          */
-        WorldGenRegistries.NOISE_SETTINGS.getEntries().forEach(settings -> {
+        WorldGenRegistries.NOISE_GENERATOR_SETTINGS.entrySet().forEach(settings -> {
             Map<Structure<?>, StructureSeparationSettings> structureMap =
-                    settings.getValue().getStructures().func_236195_a_();
+                    settings.getValue().structureSettings().structureConfig();
             /*
              * Pre-caution in case a mod makes the structure map immutable like datapacks do.
              * I take no chances myself. You never know what another mods does...
@@ -99,7 +99,7 @@ public class modStructures {
             if (structureMap instanceof ImmutableMap) {
                 Map<Structure<?>, StructureSeparationSettings> tempMap = new HashMap<>(structureMap);
                 tempMap.put(structure, structureSeparationSettings);
-                settings.getValue().getStructures().func_236195_a_();
+                settings.getValue().structureSettings().structureConfig();
 
             } else {
                 structureMap.put(structure, structureSeparationSettings);

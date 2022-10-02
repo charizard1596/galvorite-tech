@@ -28,7 +28,7 @@ public class wireBlock extends SixWayBlock {
 
     public wireBlock(Properties properties) {
         super(0.3125F, properties);
-        this.setDefaultState(this.stateContainer.getBaseState().with(FACING, Direction.NORTH).with(NORTH, Boolean.valueOf(false)).with(EAST, Boolean.valueOf(false)).with(SOUTH, Boolean.valueOf(false)).with(WEST, Boolean.valueOf(false)).with(UP, Boolean.valueOf(false)).with(DOWN, Boolean.valueOf(false)));
+        this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH).setValue(NORTH, Boolean.valueOf(false)).setValue(EAST, Boolean.valueOf(false)).setValue(SOUTH, Boolean.valueOf(false)).setValue(WEST, Boolean.valueOf(false)).setValue(UP, Boolean.valueOf(false)).setValue(DOWN, Boolean.valueOf(false)));
     }
 
     @Nullable
@@ -40,20 +40,20 @@ public class wireBlock extends SixWayBlock {
                 direction=direction.getOpposite();
             }
         }
-        BlockState state = this.getDefaultState().with(NORTH, Boolean.valueOf(false)).with(SOUTH, Boolean.valueOf(false)).with(DOWN, Boolean.valueOf(false)).with(UP, Boolean.valueOf(false)).with(EAST, Boolean.valueOf(false)).with(WEST, false);
-        return state.with(FACING, direction);
+        BlockState state = this.defaultBlockState().setValue(NORTH, Boolean.valueOf(false)).setValue(SOUTH, Boolean.valueOf(false)).setValue(DOWN, Boolean.valueOf(false)).setValue(UP, Boolean.valueOf(false)).setValue(EAST, Boolean.valueOf(false)).setValue(WEST, false);
+        return state.setValue(FACING, direction);
     }
 
     @Override
-    public void onBlockAdded(BlockState vstate, World worldIn, BlockPos pos, BlockState oldState, boolean isMoving) {
-        super.onBlockAdded(vstate, worldIn, pos, oldState, isMoving);
+    public void onPlace(BlockState vstate, World worldIn, BlockPos pos, BlockState oldState, boolean isMoving) {
+        super.onPlace(vstate, worldIn, pos, oldState, isMoving);
         BlockState state = vstate;
-        worldIn.setBlockState(pos,this.updatePostPlacement(this.updatePostPlacement(state,state.get(FACING).getOpposite(),worldIn.getBlockState(pos.offset(state.get(FACING).getOpposite())),worldIn,pos,pos.offset(state.get(FACING).getOpposite())),state.get(FACING),worldIn.getBlockState(pos.offset(state.get(FACING))),worldIn,pos,pos.offset(state.get(FACING))));
+        worldIn.setBlockAndUpdate(pos,this.updateShape(this.updateShape(state,state.getValue(FACING).getOpposite(),worldIn.getBlockState(pos.relative(state.getValue(FACING).getOpposite())),worldIn,pos,pos.relative(state.getValue(FACING).getOpposite())),state.getValue(FACING),worldIn.getBlockState(pos.relative(state.getValue(FACING))),worldIn,pos,pos.relative(state.getValue(FACING))));
     }
 
     @Override
-    public BlockState updatePostPlacement(BlockState state, Direction facing, BlockState facingState, IWorld world, BlockPos pos, BlockPos facingPos) {
-            boolean isGood = facingState.matchesBlock(modBlocks.WIRE.get()) || facingState.matchesBlock(modBlocks.ENERGY_STORAGE.get()) || facingState.matchesBlock(modBlocks.INFINITE_ENERGY_BLOCK.get());
+    public BlockState updateShape(BlockState state, Direction facing, BlockState facingState, IWorld world, BlockPos pos, BlockPos facingPos) {
+            boolean isGood = facingState.is(modBlocks.WIRE.get()) || facingState.is(modBlocks.ENERGY_STORAGE.get()) || facingState.is(modBlocks.RECYCLER.get()) || facingState.is(modBlocks.INFINITE_ENERGY_BLOCK.get());
             /*
             FOR SIDE NOT FRONT/BACK
             If block beside me is wire AND is pointing at me then set side to true.
@@ -61,19 +61,19 @@ public class wireBlock extends SixWayBlock {
             If block in front of me is a good block then set side to true
              */
 
-            if (state.get(FACING)==facing||state.get(FACING).getOpposite()==facing) {
+            if (state.getValue(FACING)==facing||state.getValue(FACING).getOpposite()==facing) {
                 //side is front or back
-                return state.with(FACING_TO_PROPERTY_MAP.get(facing), Boolean.valueOf(isGood));
+                return state.setValue(PROPERTY_BY_DIRECTION.get(facing), Boolean.valueOf(isGood));
             } else {
                 //side is not front or back
-                if (facingState.matchesBlock(modBlocks.WIRE.get())) {
-                    if (facingState.get(FACING)==facing.getOpposite()||facingState.get(FACING)==facing) {
-                        return state.with(FACING_TO_PROPERTY_MAP.get(facing), Boolean.valueOf(true));
+                if (facingState.is(modBlocks.WIRE.get())) {
+                    if (facingState.getValue(FACING)==facing.getOpposite()||facingState.getValue(FACING)==facing) {
+                        return state.setValue(PROPERTY_BY_DIRECTION.get(facing), Boolean.valueOf(true));
                     }
-                    return state.with(FACING_TO_PROPERTY_MAP.get(facing), Boolean.valueOf(false));
+                    return state.setValue(PROPERTY_BY_DIRECTION.get(facing), Boolean.valueOf(false));
                 }
             }
-        return state.with(FACING_TO_PROPERTY_MAP.get(facing), Boolean.valueOf(false));
+        return state.setValue(PROPERTY_BY_DIRECTION.get(facing), Boolean.valueOf(false));
     }
 
     @Override
@@ -89,11 +89,11 @@ public class wireBlock extends SixWayBlock {
         return new wireTile();
     }
 
-    protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
+    protected void createBlockStateDefinition(StateContainer.Builder<Block, BlockState> builder) {
         builder.add(FACING, NORTH, EAST, SOUTH, WEST, UP, DOWN);
     }
 
-    public boolean allowsMovement(BlockState state, IBlockReader worldIn, BlockPos pos, PathType type) {
+    public boolean isPathfindable(BlockState state, IBlockReader worldIn, BlockPos pos, PathType type) {
         return false;
     }
 }

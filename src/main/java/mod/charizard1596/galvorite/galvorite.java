@@ -20,16 +20,19 @@ import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.RenderTypeLookup;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.effect.LightningBoltEntity;
 import net.minecraft.entity.item.ExperienceOrbEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Effects;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.client.event.GuiScreenEvent;
 import net.minecraftforge.client.event.InputEvent;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.player.CriticalHitEvent;
 import net.minecraftforge.eventbus.api.Event;
@@ -77,10 +80,10 @@ public class galvorite
         MinecraftForge.EVENT_BUS.register(this);
     }
     private void doClientStuff(final FMLClientSetupEvent event) {
-        RenderTypeLookup.setRenderLayer(modBlocks.DIAMOND_TROPHY.get(), RenderType.getCutout());
-        RenderTypeLookup.setRenderLayer(modBlocks.NETHERITE_TROPHY.get(), RenderType.getCutout());
-        RenderTypeLookup.setRenderLayer(modBlocks.GALVORITE_TROPHY.get(), RenderType.getCutout());
-        ScreenManager.registerFactory(modContainers.RECYCLER_CONTAINER.get(),
+        RenderTypeLookup.setRenderLayer(modBlocks.DIAMOND_TROPHY.get(), RenderType.cutout());
+        RenderTypeLookup.setRenderLayer(modBlocks.NETHERITE_TROPHY.get(), RenderType.cutout());
+        RenderTypeLookup.setRenderLayer(modBlocks.GALVORITE_TROPHY.get(), RenderType.cutout());
+        ScreenManager.register(modContainers.RECYCLER_CONTAINER.get(),
                 recyclerScreen::new);
     }
     private void setup(final FMLCommonSetupEvent event)
@@ -125,29 +128,41 @@ public class galvorite
     }
     @SubscribeEvent
     public void onKey(InputEvent.KeyInputEvent event) {
-        if (Minecraft.getInstance().player.getItemStackFromSlot(EquipmentSlotType.CHEST).getItem()==modItems.JETPACK.get()){
-            network.CHANNEL.sendToServer(new jetpackMessage(Minecraft.getInstance().gameSettings.keyBindJump.isKeyDown()));
+        if (Minecraft.getInstance().player.getItemBySlot(EquipmentSlotType.CHEST).getItem()==modItems.JETPACK.get()){
+            network.CHANNEL.sendToServer(new jetpackMessage(Minecraft.getInstance().options.keyJump.isDown()));
         }
     }
     @SubscribeEvent
     public void galvoriteSwordKill (LivingDeathEvent event) {
-        Entity killer = event.getSource().getTrueSource();
+        Entity killer = event.getSource().getEntity();
         Entity dead = event.getEntity();
-        World world = event.getEntityLiving().getEntity().world;
-        if (!(dead instanceof PlayerEntity) && killer instanceof PlayerEntity && ((PlayerEntity) killer).getHeldItem(event.getEntityLiving().getActiveHand()).getItem() == modItems.GALVORITE_SWORD.get()) {
-            ExperienceOrbEntity xp = new ExperienceOrbEntity(world,killer.getPosX(),killer.getPosY(),killer.getPosZ(),1);
-            world.addEntity(xp);
+        World world = event.getEntityLiving().getEntity().level;
+        if (!(dead instanceof PlayerEntity) && killer instanceof PlayerEntity && ((PlayerEntity) killer).getItemInHand(event.getEntityLiving().getUsedItemHand()).getItem() == modItems.GALVORITE_SWORD.get()) {
+            ExperienceOrbEntity xp = new ExperienceOrbEntity(world,killer.getX(),killer.getY(),killer.getZ(),1);
+            world.addFreshEntity(xp);
+        }
+    }
+    @SubscribeEvent
+    public void onLightning(EntityJoinWorldEvent event){
+        if (!event.getWorld().isClientSide()) {
+            if (event.getEntity() instanceof LightningBoltEntity) {
+                System.out.println("Sussi");
+                LightningBoltEntity lightningBolt = (LightningBoltEntity) event.getEntity();
+                if (event.getWorld().getBlockState(new BlockPos(lightningBolt.getX(), lightningBolt.getY() - 1, lightningBolt.getZ())).getBlock() == Blocks.DIAMOND_BLOCK.getBlock()) {
+                    event.getWorld().setBlockAndUpdate(new BlockPos(lightningBolt.getX(), lightningBolt.getY() - 1, lightningBolt.getZ()), modBlocks.GALVORITE_BLOCK.get().defaultBlockState());
+                }
+            }
         }
     }
     @SubscribeEvent
     public void onCrit(CriticalHitEvent event) {
-        if (event.getPlayer().getItemStackFromSlot(EquipmentSlotType.MAINHAND).getItem() == modItems.GALVORITE_AXE.get())
+        if (event.getPlayer().getItemBySlot(EquipmentSlotType.MAINHAND).getItem() == modItems.GALVORITE_AXE.get())
         {
             if (event.isVanillaCritical()) {
                 if (Math.random()<0.25) {
                     LivingEntity livingEntity = (LivingEntity) event.getTarget();
                     if (livingEntity != null) {
-                        livingEntity.addPotionEffect(new EffectInstance(Effects.SLOWNESS,200,0));
+                        livingEntity.addEffect(new EffectInstance(Effects.MOVEMENT_SLOWDOWN,200,0));
                     }
                 }
                 event.setResult(Event.Result.ALLOW);

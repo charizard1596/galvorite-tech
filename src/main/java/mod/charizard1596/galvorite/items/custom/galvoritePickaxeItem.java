@@ -21,7 +21,7 @@ public class galvoritePickaxeItem extends PickaxeItem {
     protected static final UUID ATTACK_REACH_MODIFIER = UUID.fromString("410cc095-30eb-4f69-bab2-e5c8658e00c5");
     public galvoritePickaxeItem(IItemTier tier, int attackDamageIn, float attackSpeedIn, Properties builder) {
         super(tier, attackDamageIn, attackSpeedIn, builder);
-        this.defaultModifiers=super.getAttributeModifiers(EquipmentSlotType.MAINHAND);
+        this.defaultModifiers=super.getDefaultAttributeModifiers(EquipmentSlotType.MAINHAND);
     }
 
     @Override
